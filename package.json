@@ -1,0 +1,30 @@
+{
+  "name": "eligius-examples",
+  "version": "1.0.0",
+  "description": "Example presentations of the Eligius engine",
+  "main": "index.js",
+  "author": "rolandzwaga",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/node": "18.11.2",
+    "eligius": "file:../chrono-trigger-js",
+    "jquery": "3.6.0",
+    "lottie-web": "5.8.1",
+    "mediaelement": "5.0.4"
+  },
+  "scripts": {
+    "build-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js",
+    "analyze-example-1": "esbuild --bundle examples/requestanimationframe/src/boot.ts outfile=dist/analysis.js --minify --analyze=verbose"
+  },
+  "devDependencies": {
+    "@craftamap/esbuild-plugin-html": "0.4.0",
+    "@types/fs-extra": "9.0.13",
+    "esbuild": "0.15.12",
+    "fs-extra": "10.1.0",
+    "ts-morph": "16.0.0",
+    "ts-node": "10.9.1",
+    "tslib": "2.4.0",
+    "typescript": "4.8.4"
+  }
+}
