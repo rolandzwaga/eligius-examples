@@ -15,7 +15,7 @@ esbuild
     bundle: true,
     minify: false,
     metafile: true,
-    outdir: "dist/requestanimationframe",
+    outdir: "docs/requestanimationframe",
     loader: {
       ".html": "text",
     },
