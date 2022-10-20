@@ -11,13 +11,17 @@ function buildEnginePack(configurationPath: string) {
   const destinationPath = path.dirname(configurationPath);
   const config = loadConfiguration(configurationPath);
 
-  if (
-    fs.existsSync(path.join(destinationPath, "webpack-resource-importer.ts"))
-  ) {
-    fs.unlinkSync(path.join(destinationPath, "webpack-resource-importer.ts"));
+  const importerPath = path.join(
+    destinationPath,
+    "webpack-resource-importer.ts"
+  );
+  if (fs.existsSync(importerPath)) {
+    fs.unlinkSync(importerPath);
   }
-  if (fs.existsSync(path.join(destinationPath, "boot.ts"))) {
-    fs.unlinkSync(path.join(destinationPath, "boot.ts"));
+
+  const bootPath = path.join(destinationPath, "boot.ts");
+  if (fs.existsSync(bootPath)) {
+    fs.unlinkSync(bootPath);
   }
 
   const importerSource = generateImporterSourceCode(

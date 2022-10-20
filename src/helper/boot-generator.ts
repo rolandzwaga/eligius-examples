@@ -33,7 +33,10 @@ function _generateBootSource(
     "const factory = new EngineFactory(new WebpackResourceImporter(), window);"
   );
   lines.push(
-    "const writableConfig = JSON.parse(JSON.stringify(engineConfig)) as IEngineConfiguration;"
+    "const writableConfig = JSON.parse(JSON.stringify(engineConfig.default)) as IEngineConfiguration;"
+  );
+  lines.push(
+    "document.getElementById('config-text').value = JSON.stringify(writableConfig, null, 2);"
   );
   lines.push("const engine = factory.createEngine(writableConfig);");
   lines.push(

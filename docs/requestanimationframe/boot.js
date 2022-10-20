@@ -9,10 +9,6 @@
   var __commonJS = (cb, mod2) => function __require() {
     return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
   };
-  var __export = (target, all) => {
-    for (var name2 in all)
-      __defProp(target, name2, { get: all[name2], enumerable: true });
-  };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
       for (let key2 of __getOwnPropNames(from))
@@ -1050,19 +1046,19 @@
             window.requestAnimationFrame = function(callback) {
               var currTime = new Date().getTime();
               var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-              var id2 = setTimeout(
+              var id = setTimeout(
                 function() {
                   callback(currTime + timeToCall);
                 },
                 timeToCall
               );
               lastTime = currTime + timeToCall;
-              return id2;
+              return id;
             };
           }
           if (!window.cancelAnimationFrame) {
-            window.cancelAnimationFrame = function(id2) {
-              clearTimeout(id2);
+            window.cancelAnimationFrame = function(id) {
+              clearTimeout(id);
             };
           }
         })();
@@ -1383,11 +1379,11 @@
                       }
                     }
                   }
-                  function findCompLayers(id2, comps) {
+                  function findCompLayers(id, comps) {
                     var i = 0;
                     var len = comps.length;
                     while (i < len) {
-                      if (comps[i].id === id2) {
+                      if (comps[i].id === id) {
                         if (!comps[i].layers.__used) {
                           comps[i].layers.__used = true;
                           return comps[i].layers;
@@ -1833,9 +1829,9 @@
               });
               workerInstance.onmessage = function(event) {
                 var data2 = event.data;
-                var id2 = data2.id;
-                var process = processes[id2];
-                processes[id2] = null;
+                var id = data2.id;
+                var process = processes[id];
+                processes[id] = null;
                 if (data2.status === "success") {
                   process.onComplete(data2.payload);
                 } else if (process.onError) {
@@ -1846,12 +1842,12 @@
           }
           function createProcess(onComplete, onError) {
             _counterId += 1;
-            var id2 = "processId_" + _counterId;
-            processes[id2] = {
+            var id = "processId_" + _counterId;
+            processes[id] = {
               onComplete,
               onError
             };
-            return id2;
+            return id;
           }
           function loadAnimation2(path, onComplete, onError) {
             setupWorker();
@@ -8233,11 +8229,11 @@
             this.maskManager = new MaskElement(this.data, this, this.globalData);
             this.renderableEffectsManager = new SVGEffects(this);
           },
-          setMatte: function(id2) {
+          setMatte: function(id) {
             if (!this.matteElement) {
               return;
             }
-            this.matteElement.setAttribute("mask", "url(" + locationHref + "#" + id2 + ")");
+            this.matteElement.setAttribute("mask", "url(" + locationHref + "#" + id + ")");
           }
         };
         function IShapeElement() {
@@ -9185,13 +9181,13 @@
           }
           if (this.filterManager.effectElements[10].p.v === 3) {
             var mask2 = createNS("mask");
-            var id2 = createElementID();
-            mask2.setAttribute("id", id2);
+            var id = createElementID();
+            mask2.setAttribute("id", id);
             mask2.setAttribute("mask-type", "alpha");
             mask2.appendChild(groupPath);
             this.elem.globalData.defs.appendChild(mask2);
             var g = createNS("g");
-            g.setAttribute("mask", "url(" + locationHref + "#" + id2 + ")");
+            g.setAttribute("mask", "url(" + locationHref + "#" + id + ")");
             while (elemChildren[0]) {
               g.appendChild(elemChildren[0]);
             }
@@ -12018,11 +12014,11 @@
           }
           return path;
         };
-        AnimationItem.prototype.getAssetData = function(id2) {
+        AnimationItem.prototype.getAssetData = function(id) {
           var i = 0;
           var len = this.assets.length;
           while (i < len) {
-            if (id2 === this.assets[i].id) {
+            if (id === this.assets[i].id) {
               return this.assets[i];
             }
             i += 1;
@@ -15298,39 +15294,39 @@
               return !document3.getElementsByName || !document3.getElementsByName(expando).length;
             });
             if (support2.getById) {
-              Expr.filter["ID"] = function(id2) {
-                var attrId = id2.replace(runescape, funescape);
+              Expr.filter["ID"] = function(id) {
+                var attrId = id.replace(runescape, funescape);
                 return function(elem2) {
                   return elem2.getAttribute("id") === attrId;
                 };
               };
-              Expr.find["ID"] = function(id2, context) {
+              Expr.find["ID"] = function(id, context) {
                 if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                  var elem2 = context.getElementById(id2);
+                  var elem2 = context.getElementById(id);
                   return elem2 ? [elem2] : [];
                 }
               };
             } else {
-              Expr.filter["ID"] = function(id2) {
-                var attrId = id2.replace(runescape, funescape);
+              Expr.filter["ID"] = function(id) {
+                var attrId = id.replace(runescape, funescape);
                 return function(elem2) {
                   var node2 = typeof elem2.getAttributeNode !== "undefined" && elem2.getAttributeNode("id");
                   return node2 && node2.value === attrId;
                 };
               };
-              Expr.find["ID"] = function(id2, context) {
+              Expr.find["ID"] = function(id, context) {
                 if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                  var node2, i2, elems, elem2 = context.getElementById(id2);
+                  var node2, i2, elems, elem2 = context.getElementById(id);
                   if (elem2) {
                     node2 = elem2.getAttributeNode("id");
-                    if (node2 && node2.value === id2) {
+                    if (node2 && node2.value === id) {
                       return [elem2];
                     }
-                    elems = context.getElementsByName(id2);
+                    elems = context.getElementsByName(id);
                     i2 = 0;
                     while (elem2 = elems[i2++]) {
                       node2 = elem2.getAttributeNode("id");
-                      if (node2 && node2.value === id2) {
+                      if (node2 && node2.value === id) {
                         return [elem2];
                       }
                     }
@@ -21853,11 +21849,11 @@
         timelineFlow: deepCopy(configuration.timelineFlow),
         timelines: resolveTimelines(configuration.timelines, this.importer, this.eventbus)
       };
-      var eventActions2 = [];
+      var eventActions = [];
       if (configuration.eventActions && actionRegistryListener) {
-        eventActions2 = resolveEventActions(configuration.eventActions, actionRegistryListener, this.importer, this.eventbus);
+        eventActions = resolveEventActions(configuration.eventActions, actionRegistryListener, this.importer, this.eventbus);
       }
-      var actionsLookup = resolvedConfig.actions.concat(eventActions2).reduce(function(aggr, action) {
+      var actionsLookup = resolvedConfig.actions.concat(eventActions).reduce(function(aggr, action) {
         var _extends2;
         return _extends({}, aggr, (_extends2 = {}, _extends2[action.name] = action, _extends2));
       }, {});
@@ -21876,9 +21872,9 @@
       return eventAction;
     });
   }
-  function resolveTimelines(timelines2, importer, eventbus) {
+  function resolveTimelines(timelines, importer, eventbus) {
     var resolve = resolveTimelineAction.bind(null, importer, eventbus);
-    return timelines2.map(function(config) {
+    return timelines.map(function(config) {
       return _extends({}, config, {
         timelineActions: config.timelineActions.map(resolve)
       });
@@ -21914,9 +21910,9 @@
       end: (_actionConfiguration$ = actionConfiguration.duration.end) != null ? _actionConfiguration$ : -1,
       start: actionConfiguration.duration.start
     };
-    var id2 = resolvedConfig.id, name2 = resolvedConfig.name, endOperations = resolvedConfig.endOperations, startOperations = resolvedConfig.startOperations;
+    var id = resolvedConfig.id, name2 = resolvedConfig.name, endOperations = resolvedConfig.endOperations, startOperations = resolvedConfig.startOperations;
     var action = new TimelineAction(name2, startOperations, endOperations, duration, eventbus);
-    action.id = id2;
+    action.id = id;
     return action;
   }
   function resolveActions(actionConfigurations, importer, eventbus) {
@@ -22021,7 +22017,7 @@
       if (!this.operationData) {
         return;
       }
-      var _this$operationData = this.operationData, selectedElement = _this$operationData.selectedElement, actions2 = _this$operationData.actions, eventName = _this$operationData.eventName;
+      var _this$operationData = this.operationData, selectedElement = _this$operationData.selectedElement, actions = _this$operationData.actions, eventName = _this$operationData.eventName;
       if (!this.actionInstanceInfos) {
         this.actionInstanceInfos = [];
         var resultCallback = function resultCallback2(isStart) {
@@ -22033,7 +22029,7 @@
             });
           };
         };
-        actions2.forEach(function(actionName) {
+        actions.forEach(function(actionName) {
           var _this$_isStartAction = _this._isStartAction(actionName), isStart = _this$_isStartAction[0], name2 = _this$_isStartAction[1];
           eventbus.broadcast(TimelineEventNames.REQUEST_ACTION, [name2, resultCallback(isStart)]);
         });
@@ -22059,24 +22055,24 @@
       this._executeAction(this.actionInstanceInfos, actionOperationData, 0);
     };
     _proto._executeAction = /* @__PURE__ */ function() {
-      var _executeAction2 = /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee(actions2, operationData, idx) {
+      var _executeAction2 = /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee(actions, operationData, idx) {
         var actionInfo, action, method, resultOperationData;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(idx < actions2.length)) {
+                if (!(idx < actions.length)) {
                   _context.next = 8;
                   break;
                 }
-                actionInfo = actions2[idx];
+                actionInfo = actions[idx];
                 action = actionInfo.action;
                 method = actionInfo.start ? action.start.bind(action) : action.end.bind(action);
                 _context.next = 6;
                 return method(operationData);
               case 6:
                 resultOperationData = _context.sent;
-                this._executeAction(actions2, Object.assign(operationData, resultOperationData), ++idx);
+                this._executeAction(actions, Object.assign(operationData, resultOperationData), ++idx);
               case 8:
               case "end":
                 return _context.stop();
@@ -22112,8 +22108,8 @@
       if (!this.operationData) {
         return;
       }
-      eventbus.broadcast(TimelineEventNames.REQUEST_CURRENT_LANGUAGE, [function(language2) {
-        _this.currentLanguage = language2;
+      eventbus.broadcast(TimelineEventNames.REQUEST_CURRENT_LANGUAGE, [function(language) {
+        _this.currentLanguage = language;
       }]);
       eventbus.broadcast(TimelineEventNames.REQUEST_LABEL_COLLECTION, [this.operationData.labelId, function(labelCollection) {
         _this.createTextDataLookup(labelCollection);
@@ -22285,22 +22281,22 @@
     _proto.init = function init() {
       this._createLayoutTemplate();
       this._addInitialisationListeners();
-      var timelines2 = this.configuration.timelines;
-      this._currentTimelineUri = timelines2 && timelines2.length ? timelines2[0].uri : "";
+      var timelines = this.configuration.timelines;
+      this._currentTimelineUri = timelines && timelines.length ? timelines[0].uri : "";
       this._createTimelineLookup();
       this._eventbusListeners.push(this.eventbus.on(TimelineEventNames.TIME, this._onTimeHandler.bind(this, Math.floor)));
       this._eventbusListeners.push(this.eventbus.on(TimelineEventNames.SEEK, this._onSeekHandler.bind(this, Math.floor)));
       return this._initializeTimelineProvider();
     };
     _proto._createLayoutTemplate = function _createLayoutTemplate() {
-      var containerSelector2 = this.configuration.containerSelector;
-      var container = (0, import_jquery.default)(containerSelector2);
+      var containerSelector = this.configuration.containerSelector;
+      var container = (0, import_jquery.default)(containerSelector);
       if (!container || !container.length) {
-        throw new Error("Container selector not found: " + containerSelector2);
+        throw new Error("Container selector not found: " + containerSelector);
       }
-      var layoutTemplate2 = this.configuration.layoutTemplate;
-      if (layoutTemplate2 && layoutTemplate2.length) {
-        container.html(layoutTemplate2);
+      var layoutTemplate = this.configuration.layoutTemplate;
+      if (layoutTemplate && layoutTemplate.length) {
+        container.html(layoutTemplate);
       } else {
         console.warn("layoutTemplate is empty, unable to create layout");
       }
@@ -22460,7 +22456,7 @@
       return lookup[position2];
     };
     _proto._executeActions = /* @__PURE__ */ function() {
-      var _executeActions2 = /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee4(actions2, methodName, idx) {
+      var _executeActions2 = /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee4(actions, methodName, idx) {
         var action;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
@@ -22469,15 +22465,15 @@
                 if (idx === void 0) {
                   idx = 0;
                 }
-                if (!(actions2 && idx < actions2.length)) {
+                if (!(actions && idx < actions.length)) {
                   _context4.next = 6;
                   break;
                 }
-                action = actions2[idx];
+                action = actions[idx];
                 _context4.next = 5;
                 return action[methodName]();
               case 5:
-                return _context4.abrupt("return", this._executeActions(actions2, methodName, ++idx));
+                return _context4.abrupt("return", this._executeActions(actions, methodName, ++idx));
               case 6:
                 return _context4.abrupt("return", new Promise(function(resolve) {
                   resolve();
@@ -22575,10 +22571,10 @@
       });
     };
     _proto._getActiveActions = function _getActiveActions(allActions) {
-      var actions2 = allActions.filter(function(action) {
+      var actions = allActions.filter(function(action) {
         return action.active;
       });
-      return actions2.sort(function(a, b) {
+      return actions.sort(function(a, b) {
         if (b.duration.start < a.duration.start) {
           return -1;
         } else if (b.duration.start > a.duration.start) {
@@ -22601,8 +22597,8 @@
       this._cleanUpTimeline();
     };
     _proto._handleExecuteTimelineAction = function _handleExecuteTimelineAction(uri, index2, start) {
-      var actions2 = this._getTimelineActionsForUri(uri);
-      var action = actions2 == null ? void 0 : actions2[index2];
+      var actions = this._getTimelineActionsForUri(uri);
+      var action = actions == null ? void 0 : actions[index2];
       if (action) {
         if (start) {
           action.start();
@@ -22652,9 +22648,9 @@
     };
     _proto._executeActionsForPosition = function _executeActionsForPosition(position2) {
       this._lastPosition = position2;
-      var actions2 = this._timeLineActionsLookup[this._currentTimelineUri];
-      if (actions2) {
-        var executions = actions2[position2];
+      var actions = this._timeLineActionsLookup[this._currentTimelineUri];
+      if (actions) {
+        var executions = actions[position2];
         executions == null ? void 0 : executions.forEach(function(exec) {
           exec();
         });
@@ -22698,12 +22694,12 @@
       if (eventTopic) {
         eventName = eventName + ":" + eventTopic;
       }
-      var actions2 = this._actionRegistry.get(eventName);
-      if (actions2) {
+      var actions = this._actionRegistry.get(eventName);
+      if (actions) {
         var operationData = {
           eventArgs: args
         };
-        actions2.forEach(function(action) {
+        actions.forEach(function(action) {
           action.start(operationData);
         });
       }
@@ -22818,7 +22814,7 @@
     return RequestVideoUriInterceptor2;
   }();
   var LanguageManager = /* @__PURE__ */ function() {
-    function LanguageManager2(_currentLanguage, labels2, _eventbus) {
+    function LanguageManager2(_currentLanguage, labels, _eventbus) {
       this._currentLanguage = void 0;
       this._eventbus = void 0;
       this._labelLookup = {};
@@ -22828,14 +22824,14 @@
       if (!_currentLanguage || !_currentLanguage.length) {
         throw new Error("language ctor arg cannot be null or have zero length");
       }
-      if (!labels2) {
+      if (!labels) {
         throw new Error("labels ctor arg cannot be null");
       }
       if (!_eventbus) {
         throw new Error("eventbus ctor arg cannot be null");
       }
       this._setRootElementLang(_currentLanguage);
-      this._createLabelLookup(labels2);
+      this._createLabelLookup(labels);
       this._addEventbusListeners(_eventbus);
     }
     var _proto = LanguageManager2.prototype;
@@ -22858,18 +22854,18 @@
       });
       resultCallback(labelCollections);
     };
-    _proto._handleLanguageChange = function _handleLanguageChange(language2) {
-      if (language2 && language2.length) {
-        this._currentLanguage = language2;
+    _proto._handleLanguageChange = function _handleLanguageChange(language) {
+      if (language && language.length) {
+        this._currentLanguage = language;
         this._setRootElementLang(this._currentLanguage);
       } else {
         console.error("Language cannot be changed to null or empty string");
       }
     };
-    _proto._setRootElementLang = function _setRootElementLang(language2) {
+    _proto._setRootElementLang = function _setRootElementLang(language) {
       var _this2 = this;
       var callBack = function callBack2(rootSelector) {
-        var lang = _this2._extractLanguageFromCulture(language2);
+        var lang = _this2._extractLanguageFromCulture(language);
         (0, import_jquery.default)(rootSelector).attr("lang", lang);
       };
       this._eventbus.broadcast(TimelineEventNames.REQUEST_ENGINE_ROOT, [callBack]);
@@ -22880,9 +22876,9 @@
       }
       return culture;
     };
-    _proto._createLabelLookup = function _createLabelLookup(labels2) {
+    _proto._createLabelLookup = function _createLabelLookup(labels) {
       var _this3 = this;
-      labels2.forEach(function(label) {
+      labels.forEach(function(label) {
         _this3._labelLookup[label.id] = label.labels;
       });
     };
@@ -22950,8 +22946,8 @@
       var _resolver$process = resolver.process(configuration, actionRegistryListener), actionLookup = _resolver$process[0], resolvedConfiguration = _resolver$process[1];
       this.actionsLookup = actionLookup;
       var timelineProviders = this._createTimelineProviders(resolvedConfiguration, this.eventbus);
-      var language2 = configuration.language, labels2 = configuration.labels;
-      var languageManager = new LanguageManager(language2, labels2, this.eventbus);
+      var language = configuration.language, labels = configuration.labels;
+      var languageManager = new LanguageManager(language, labels, this.eventbus);
       var engineInstance = new EngineClass(resolvedConfiguration, this.eventbus, timelineProviders, languageManager);
       import_mousetrap.default.bind("space", function(event) {
         event.preventDefault();
@@ -22962,8 +22958,8 @@
     };
     _proto._createTimelineProviders = function _createTimelineProviders(configuration, eventbus) {
       var _this3 = this;
-      var timelineProviderSettings2 = configuration.timelineProviderSettings;
-      var result = Object.entries(timelineProviderSettings2).reduce(function(acc, _ref) {
+      var timelineProviderSettings = configuration.timelineProviderSettings;
+      var result = Object.entries(timelineProviderSettings).reduce(function(acc, _ref) {
         var timelineType = _ref[0], settings = _ref[1];
         if (!settings) {
           return acc;
@@ -23393,446 +23389,416 @@
   }();
 
   // examples/requestanimationframe/src/config-data.json
-  var config_data_exports = {};
-  __export(config_data_exports, {
-    actions: () => actions,
-    availableLanguages: () => availableLanguages,
-    containerSelector: () => containerSelector,
-    default: () => config_data_default,
-    engine: () => engine,
-    eventActions: () => eventActions,
-    id: () => id,
-    initActions: () => initActions,
-    labels: () => labels,
-    language: () => language,
-    layoutTemplate: () => layoutTemplate,
-    timelineFlow: () => timelineFlow,
-    timelineProviderSettings: () => timelineProviderSettings,
-    timelines: () => timelines
-  });
-  var id = "6291bf4c-07fb-49c6-9005-2dca98d1b3af";
-  var engine = {
-    systemName: "EligiusEngine"
-  };
-  var timelineProviderSettings = {
-    animation: {
-      vendor: "eligius",
-      systemName: "RequestAnimationFrameTimelineProvider"
-    }
-  };
-  var containerSelector = "#ct-container";
-  var language = "en-US";
-  var layoutTemplate = "template:layoutTemplate";
-  var availableLanguages = [
-    {
-      languageCode: "en-US",
-      label: "English"
+  var config_data_default = {
+    id: "6291bf4c-07fb-49c6-9005-2dca98d1b3af",
+    engine: {
+      systemName: "EligiusEngine"
     },
-    {
-      languageCode: "nl-NL",
-      label: "Nederlands"
-    }
-  ];
-  var initActions = [
-    {
-      name: "MainTitleLabel",
-      startOperations: [
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#main-title"
-          }
-        },
-        {
-          systemName: "getControllerInstance",
-          operationData: {
-            systemName: "LabelController"
-          }
-        },
-        {
-          systemName: "addControllerToElement",
-          operationData: {
-            labelId: "mainTitle"
-          }
-        }
-      ],
-      endOperations: [
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#main-title"
-          }
-        },
-        {
-          systemName: "removeControllerFromElement",
-          operationData: {
-            systemName: "LabelController"
-          }
-        }
-      ]
+    timelineProviderSettings: {
+      animation: {
+        vendor: "eligius",
+        systemName: "RequestAnimationFrameTimelineProvider"
+      }
     },
-    {
-      name: "ProgressbarSetup",
-      startOperations: [
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#progress"
-          }
-        },
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#progress-text",
-            propertyName: "textElement"
-          }
-        },
-        {
-          systemName: "getControllerInstance",
-          operationData: {
-            systemName: "ProgressbarController"
-          }
-        },
-        {
-          systemName: "addControllerToElement",
-          operationData: {
-            playerId: "raf"
-          }
-        }
-      ],
-      endOperations: [
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#progress"
-          }
-        },
-        {
-          systemName: "removeControllerFromElement",
-          operationData: {
-            systemName: "ProgressbarController"
-          }
-        }
-      ]
-    },
-    {
-      name: "LanguageSelection",
-      startOperations: [
-        {
-          id: "6561337a-c83e-4d76-9ded-b887e59e151e",
-          systemName: "selectElement",
-          operationData: {
-            selector: "[data-selector-container=true]"
-          }
-        },
-        {
-          id: "7d282d68-e75d-4b92-bf13-8e836f39ee96",
-          systemName: "createElement",
-          operationData: {
-            elementName: "select",
-            attributes: {
-              "data-language-selector": "true",
-              defaultValue: "nl-NL"
-            }
-          }
-        },
-        {
-          id: "e61a532a-712a-4746-915a-ab0781bcd4dc",
-          systemName: "setElementContent",
-          operationData: {
-            insertionType: "prepend"
-          }
-        },
-        {
-          id: "beaa54ef-5809-44e8-8bdf-2cd868cd5ed9",
-          systemName: "selectElement",
-          operationData: {
-            selector: "[data-language-selector=true]"
-          }
-        },
-        {
-          id: "3cde6cdb-23e2-4149-a50b-0470cee46fb3",
-          systemName: "startLoop",
-          operationData: {
-            collection: "config:availableLanguages"
-          }
-        },
-        {
-          id: "0b636a6d-4c59-47e2-b9fa-c88bc8cdfeb6",
-          systemName: "createElement",
-          operationData: {
-            elementName: "option",
-            attributes: {
-              value: "operationdata.currentItem.languageCode"
-            },
-            text: "operationdata.currentItem.label"
-          }
-        },
-        {
-          id: "eda9fd92-ebf0-4418-9351-057db29bcdb1",
-          systemName: "setElementContent",
-          operationData: {
-            insertionType: "append"
-          }
-        },
-        {
-          id: "2f215329-c443-40b7-b861-c5987fd7f5ad",
-          systemName: "endLoop",
-          operationData: {}
-        },
-        {
-          id: "878c43e4-05c8-4b9f-a3c2-9db1e2c0a6a5",
-          systemName: "getControllerInstance",
-          operationData: {
-            systemName: "EventListenerController"
-          }
-        },
-        {
-          id: "ec1eab42-fa1a-436d-be61-a288e16d5c24",
-          systemName: "addControllerToElement",
-          operationData: {
-            eventName: "change",
-            actions: ["BroadcastLanguageChange"]
-          }
-        }
-      ],
-      endOperations: [
-        {
-          id: "b5b58a06-bda3-4a14-8b5d-7f9f91b78b8e",
-          systemName: "selectElement",
-          operationData: {
-            selector: "[data-language-selector=true]"
-          }
-        },
-        {
-          id: "bec08c61-34df-415d-937d-065294bd9f44",
-          systemName: "removeControllerFromElement",
-          operationData: {
-            controllerName: "EventListenerController"
-          }
-        }
-      ]
-    },
-    {
-      name: "SubtitleDisplay",
-      startOperations: [
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#subtitles"
-          }
-        },
-        {
-          systemName: "getControllerInstance",
-          operationData: {
-            systemName: "SubtitlesController"
-          }
-        },
-        {
-          systemName: "addControllerToElement",
-          operationData: {
-            language: "config:language",
-            subtitleData: "json:testSubtitles"
-          }
-        }
-      ],
-      endOperations: [
-        {
-          systemName: "selectElement",
-          operationData: {
-            selector: "#subtitles"
-          }
-        },
-        {
-          systemName: "removeControllerFromElement",
-          operationData: {
-            systemName: "SubtitlesController"
-          }
-        }
-      ]
-    }
-  ];
-  var actions = [
-    {
-      name: "BroadcastLanguageChange",
-      startOperations: [
-        {
-          systemName: "broadcastEvent",
-          operationData: {
-            eventName: "language-change",
-            eventArgs: ["operationData.targetValue"]
-          }
-        }
-      ],
-      endOperations: []
-    }
-  ];
-  var timelines = [
-    {
-      type: "animation",
-      uri: "animation-01",
-      duration: 45,
-      loop: true,
-      selector: ".timeline-div",
-      timelineActions: [
-        {
-          name: "ShowChartHistoryItem",
-          duration: {
-            start: 7
-          },
-          startOperations: [
-            {
-              systemName: "selectElement",
-              operationData: {
-                selector: ".view-history-container"
-              }
-            },
-            {
-              systemName: "setElementContent",
-              operationData: {
-                template: '<div class="view-history-item-borders view-history-item" id="view-history-item-1"><span class="huge">1</span></div>',
-                append: true
-              }
-            },
-            {
-              systemName: "selectElement",
-              operationData: {
-                useExistingAsRoot: true,
-                selector: "#view-history-item-1"
-              }
-            },
-            {
-              systemName: "addClass",
-              operationData: {
-                className: "view-history-item-full"
-              }
-            }
-          ],
-          endOperations: [
-            {
-              systemName: "selectElement",
-              operationData: {
-                selector: "#view-history-item-1"
-              }
-            },
-            {
-              systemName: "removeElement"
-            }
-          ]
-        },
-        {
-          name: "ShowGoogleMaps",
-          duration: {
-            start: 22,
-            end: 40
-          },
-          startOperations: [
-            {
-              systemName: "selectElement",
-              operationData: {
-                selector: ".main-view-container"
-              }
-            },
-            {
-              systemName: "setElementContent",
-              operationData: {
-                template: '<iframe src="//www.google.com/maps/embed/v1/place?q=Harrods,Brompton%20Rd,%20UK&zoom=17" class="google-maps-container"></iframe>'
-              }
-            }
-          ],
-          endOperations: [
-            {
-              systemName: "selectElement",
-              operationData: {
-                selector: ".main-view-container"
-              }
-            },
-            {
-              systemName: "clearElement"
-            }
-          ]
-        },
-        {
-          name: "ShowGoogleMapsHistoryItem",
-          duration: {
-            start: 24
-          },
-          startOperations: [
-            {
-              systemName: "selectElement",
-              operationData: {
-                selector: ".view-history-container"
-              }
-            },
-            {
-              systemName: "setElementContent",
-              operationData: {
-                template: '<div class="view-history-item" id="view-history-item-2"><span class="huge">2</span></div>',
-                append: true
-              }
-            }
-          ],
-          endOperations: [
-            {
-              systemName: "selectElement",
-              operationData: {
-                selector: "#view-history-item-2"
-              }
-            },
-            {
-              systemName: "removeElement"
-            }
-          ]
-        }
-      ]
-    }
-  ];
-  var timelineFlow = {
-    id: "11-22-33",
-    uri: "animation-01",
-    children: [
+    containerSelector: "#ct-container",
+    language: "en-US",
+    layoutTemplate: "template:layoutTemplate",
+    availableLanguages: [
       {
-        id: "44-55-66",
-        uri: "animation-02",
-        param: true
+        languageCode: "en-US",
+        label: "English"
       },
       {
-        id: "77-88-99",
-        uri: "animation-03",
-        param: false
+        languageCode: "nl-NL",
+        label: "Nederlands"
       }
-    ]
-  };
-  var eventActions = [];
-  var labels = [
-    {
-      id: "mainTitle",
-      labels: [
+    ],
+    initActions: [
+      {
+        name: "MainTitleLabel",
+        startOperations: [
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#main-title"
+            }
+          },
+          {
+            systemName: "getControllerInstance",
+            operationData: {
+              systemName: "LabelController"
+            }
+          },
+          {
+            systemName: "addControllerToElement",
+            operationData: {
+              labelId: "mainTitle"
+            }
+          }
+        ],
+        endOperations: [
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#main-title"
+            }
+          },
+          {
+            systemName: "removeControllerFromElement",
+            operationData: {
+              systemName: "LabelController"
+            }
+          }
+        ]
+      },
+      {
+        name: "ProgressbarSetup",
+        startOperations: [
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#progress"
+            }
+          },
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#progress-text",
+              propertyName: "textElement"
+            }
+          },
+          {
+            systemName: "getControllerInstance",
+            operationData: {
+              systemName: "ProgressbarController"
+            }
+          },
+          {
+            systemName: "addControllerToElement",
+            operationData: {
+              playerId: "raf"
+            }
+          }
+        ],
+        endOperations: [
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#progress"
+            }
+          },
+          {
+            systemName: "removeControllerFromElement",
+            operationData: {
+              systemName: "ProgressbarController"
+            }
+          }
+        ]
+      },
+      {
+        name: "LanguageSelection",
+        startOperations: [
+          {
+            id: "6561337a-c83e-4d76-9ded-b887e59e151e",
+            systemName: "selectElement",
+            operationData: {
+              selector: "[data-selector-container=true]"
+            }
+          },
+          {
+            id: "7d282d68-e75d-4b92-bf13-8e836f39ee96",
+            systemName: "createElement",
+            operationData: {
+              elementName: "select",
+              attributes: {
+                "data-language-selector": "true",
+                defaultValue: "nl-NL"
+              }
+            }
+          },
+          {
+            id: "e61a532a-712a-4746-915a-ab0781bcd4dc",
+            systemName: "setElementContent",
+            operationData: {
+              insertionType: "prepend"
+            }
+          },
+          {
+            id: "beaa54ef-5809-44e8-8bdf-2cd868cd5ed9",
+            systemName: "selectElement",
+            operationData: {
+              selector: "[data-language-selector=true]"
+            }
+          },
+          {
+            id: "3cde6cdb-23e2-4149-a50b-0470cee46fb3",
+            systemName: "startLoop",
+            operationData: {
+              collection: "config:availableLanguages"
+            }
+          },
+          {
+            id: "0b636a6d-4c59-47e2-b9fa-c88bc8cdfeb6",
+            systemName: "createElement",
+            operationData: {
+              elementName: "option",
+              attributes: {
+                value: "operationdata.currentItem.languageCode"
+              },
+              text: "operationdata.currentItem.label"
+            }
+          },
+          {
+            id: "eda9fd92-ebf0-4418-9351-057db29bcdb1",
+            systemName: "setElementContent",
+            operationData: {
+              insertionType: "append"
+            }
+          },
+          {
+            id: "2f215329-c443-40b7-b861-c5987fd7f5ad",
+            systemName: "endLoop",
+            operationData: {}
+          },
+          {
+            id: "878c43e4-05c8-4b9f-a3c2-9db1e2c0a6a5",
+            systemName: "getControllerInstance",
+            operationData: {
+              systemName: "EventListenerController"
+            }
+          },
+          {
+            id: "ec1eab42-fa1a-436d-be61-a288e16d5c24",
+            systemName: "addControllerToElement",
+            operationData: {
+              eventName: "change",
+              actions: ["BroadcastLanguageChange"]
+            }
+          }
+        ],
+        endOperations: [
+          {
+            id: "b5b58a06-bda3-4a14-8b5d-7f9f91b78b8e",
+            systemName: "selectElement",
+            operationData: {
+              selector: "[data-language-selector=true]"
+            }
+          },
+          {
+            id: "bec08c61-34df-415d-937d-065294bd9f44",
+            systemName: "removeControllerFromElement",
+            operationData: {
+              controllerName: "EventListenerController"
+            }
+          }
+        ]
+      },
+      {
+        name: "SubtitleDisplay",
+        startOperations: [
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#subtitles"
+            }
+          },
+          {
+            systemName: "getControllerInstance",
+            operationData: {
+              systemName: "SubtitlesController"
+            }
+          },
+          {
+            systemName: "addControllerToElement",
+            operationData: {
+              language: "config:language",
+              subtitleData: "json:testSubtitles"
+            }
+          }
+        ],
+        endOperations: [
+          {
+            systemName: "selectElement",
+            operationData: {
+              selector: "#subtitles"
+            }
+          },
+          {
+            systemName: "removeControllerFromElement",
+            operationData: {
+              systemName: "SubtitlesController"
+            }
+          }
+        ]
+      }
+    ],
+    actions: [
+      {
+        name: "BroadcastLanguageChange",
+        startOperations: [
+          {
+            systemName: "broadcastEvent",
+            operationData: {
+              eventName: "language-change",
+              eventArgs: ["operationData.targetValue"]
+            }
+          }
+        ],
+        endOperations: []
+      }
+    ],
+    timelines: [
+      {
+        type: "animation",
+        uri: "animation-01",
+        duration: 45,
+        loop: true,
+        selector: ".timeline-div",
+        timelineActions: [
+          {
+            name: "ShowChartHistoryItem",
+            duration: {
+              start: 7
+            },
+            startOperations: [
+              {
+                systemName: "selectElement",
+                operationData: {
+                  selector: ".view-history-container"
+                }
+              },
+              {
+                systemName: "setElementContent",
+                operationData: {
+                  template: '<div class="view-history-item-borders view-history-item" id="view-history-item-1"><span class="huge">1</span></div>',
+                  append: true
+                }
+              },
+              {
+                systemName: "selectElement",
+                operationData: {
+                  useExistingAsRoot: true,
+                  selector: "#view-history-item-1"
+                }
+              },
+              {
+                systemName: "addClass",
+                operationData: {
+                  className: "view-history-item-full"
+                }
+              }
+            ],
+            endOperations: [
+              {
+                systemName: "selectElement",
+                operationData: {
+                  selector: "#view-history-item-1"
+                }
+              },
+              {
+                systemName: "removeElement"
+              }
+            ]
+          },
+          {
+            name: "ShowGoogleMaps",
+            duration: {
+              start: 22,
+              end: 40
+            },
+            startOperations: [
+              {
+                systemName: "selectElement",
+                operationData: {
+                  selector: ".main-view-container"
+                }
+              },
+              {
+                systemName: "setElementContent",
+                operationData: {
+                  template: '<iframe src="//www.google.com/maps/embed/v1/place?q=Harrods,Brompton%20Rd,%20UK&zoom=17" class="google-maps-container"></iframe>'
+                }
+              }
+            ],
+            endOperations: [
+              {
+                systemName: "selectElement",
+                operationData: {
+                  selector: ".main-view-container"
+                }
+              },
+              {
+                systemName: "clearElement"
+              }
+            ]
+          },
+          {
+            name: "ShowGoogleMapsHistoryItem",
+            duration: {
+              start: 24
+            },
+            startOperations: [
+              {
+                systemName: "selectElement",
+                operationData: {
+                  selector: ".view-history-container"
+                }
+              },
+              {
+                systemName: "setElementContent",
+                operationData: {
+                  template: '<div class="view-history-item" id="view-history-item-2"><span class="huge">2</span></div>',
+                  append: true
+                }
+              }
+            ],
+            endOperations: [
+              {
+                systemName: "selectElement",
+                operationData: {
+                  selector: "#view-history-item-2"
+                }
+              },
+              {
+                systemName: "removeElement"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    timelineFlow: {
+      id: "11-22-33",
+      uri: "animation-01",
+      children: [
         {
-          languageCode: "en-US",
-          label: "This is the main title"
+          id: "44-55-66",
+          uri: "animation-02",
+          param: true
         },
         {
-          languageCode: "nl-NL",
-          label: "Dit is de hoofdtitel"
+          id: "77-88-99",
+          uri: "animation-03",
+          param: false
         }
       ]
-    }
-  ];
-  var config_data_default = {
-    id,
-    engine,
-    timelineProviderSettings,
-    containerSelector,
-    language,
-    layoutTemplate,
-    availableLanguages,
-    initActions,
-    actions,
-    timelines,
-    timelineFlow,
-    eventActions,
-    labels
+    },
+    eventActions: [],
+    labels: [
+      {
+        id: "mainTitle",
+        labels: [
+          {
+            languageCode: "en-US",
+            label: "This is the main title"
+          },
+          {
+            languageCode: "nl-NL",
+            label: "Dit is de hoofdtitel"
+          }
+        ]
+      }
+    ]
   };
 
   // examples/requestanimationframe/src/template/layout-template.html
@@ -23947,9 +23913,10 @@
 
   // examples/requestanimationframe/src/boot.ts
   var factory = new EngineFactory(new webpack_resource_importer_default(), window);
-  var writableConfig = JSON.parse(JSON.stringify(config_data_exports));
-  var engine2 = factory.createEngine(writableConfig);
-  engine2.init().then(() => {
+  var writableConfig = JSON.parse(JSON.stringify(config_data_default));
+  document.getElementById("config-text").value = JSON.stringify(writableConfig, null, 2);
+  var engine = factory.createEngine(writableConfig);
+  engine.init().then(() => {
     console.log("Eligius engine ready for business");
   });
 })();
