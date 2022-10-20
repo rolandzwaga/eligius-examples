@@ -14,8 +14,7 @@
     "mediaelement": "5.0.4"
   },
   "scripts": {
-    "build-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js",
-    "analyze-example-1": "esbuild --bundle examples/requestanimationframe/src/boot.ts outfile=dist/analysis.js --minify --analyze=verbose"
+    "build-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js"
   },
   "devDependencies": {
     "@craftamap/esbuild-plugin-html": "0.4.0",

@@ -1,0 +1,22 @@
+name: Continuous build
+on: [push]
+jobs:
+  build:
+    name: Build all examples
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        uses: mskelton/setup-yarn@v1
+
+      - name: Test
+        run: yarn build-example-1
