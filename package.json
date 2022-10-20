@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "@types/node": "18.11.2",
-    "eligius": "file:../chrono-trigger-js",
+    "eligius": "1.0.3",
     "jquery": "3.6.0",
     "lottie-web": "5.8.1",
     "mediaelement": "5.0.4"

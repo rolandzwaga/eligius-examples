@@ -269,8 +269,10 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-"eligius@file:../chrono-trigger-js":
-  version "1.0.2"
+eligius@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.3.tgz#ae3afeb7efc626a326aeeee9cd25bfa61d77e24e"
+  integrity sha512-JPvc+smkeNcUL8c+B3M5AYipooPYxDcbiHkVHnyhEdDvozgtc8YC4rqBfkoTD4b2QpsAe52DPwpk9hoLV9CYeA==
   dependencies:
     mousetrap "1.6.5"
     ts-is-present "1.2.2"
@@ -868,7 +870,7 @@ ts-node@10.9.1:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-tslib@^2.4.0:
+tslib@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
