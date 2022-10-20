@@ -11223,7 +11223,7 @@
           var playingAnimationsNum = 0;
           var _stopped = true;
           var _isFrozen = false;
-          function removeElement2(ev) {
+          function removeElement(ev) {
             var i = 0;
             var animItem = ev.target;
             while (i < len) {
@@ -11271,7 +11271,7 @@
             playingAnimationsNum -= 1;
           }
           function setupAnimation(animItem, element) {
-            animItem.addEventListener("destroy", removeElement2);
+            animItem.addEventListener("destroy", removeElement);
             animItem.addEventListener("_active", addPlayingCount);
             animItem.addEventListener("_idle", subtractPlayingCount);
             registeredAnimations.push({ elem: element, animation: animItem });
@@ -22976,11 +22976,6 @@
     };
     return EngineFactory2;
   }();
-  var addClass$1 = function addClass(operationData) {
-    var selectedElement = operationData.selectedElement, className = operationData.className;
-    selectedElement.addClass(className);
-    return operationData;
-  };
   var controllersDataName = "eligiusEngineControllers";
   function getElementData(name2, element) {
     return element.data(name2);
@@ -23049,11 +23044,6 @@
       this.eventbus.broadcast(eventName, eventArguments);
     }
     removeEventDataFromOperationData(operationData);
-    return operationData;
-  };
-  var clearElement$1 = function clearElement(operationData) {
-    var selectedElement = operationData.selectedElement;
-    selectedElement.empty();
     return operationData;
   };
   var cache = [];
@@ -23143,11 +23133,6 @@
       controllers.splice(idx, 1);
       controller.detach(this.eventbus);
     }
-    return operationData;
-  };
-  var removeElement$1 = function removeElement(operationData) {
-    var selectedElement = operationData.selectedElement;
-    selectedElement.remove();
     return operationData;
   };
   function findElementBySelector(root, selector, operationData, propertyName) {
@@ -23654,117 +23639,7 @@
         duration: 45,
         loop: true,
         selector: ".timeline-div",
-        timelineActions: [
-          {
-            name: "ShowChartHistoryItem",
-            duration: {
-              start: 7
-            },
-            startOperations: [
-              {
-                systemName: "selectElement",
-                operationData: {
-                  selector: ".view-history-container"
-                }
-              },
-              {
-                systemName: "setElementContent",
-                operationData: {
-                  template: '<div class="view-history-item-borders view-history-item" id="view-history-item-1"><span class="huge">1</span></div>',
-                  append: true
-                }
-              },
-              {
-                systemName: "selectElement",
-                operationData: {
-                  useExistingAsRoot: true,
-                  selector: "#view-history-item-1"
-                }
-              },
-              {
-                systemName: "addClass",
-                operationData: {
-                  className: "view-history-item-full"
-                }
-              }
-            ],
-            endOperations: [
-              {
-                systemName: "selectElement",
-                operationData: {
-                  selector: "#view-history-item-1"
-                }
-              },
-              {
-                systemName: "removeElement"
-              }
-            ]
-          },
-          {
-            name: "ShowGoogleMaps",
-            duration: {
-              start: 22,
-              end: 40
-            },
-            startOperations: [
-              {
-                systemName: "selectElement",
-                operationData: {
-                  selector: ".main-view-container"
-                }
-              },
-              {
-                systemName: "setElementContent",
-                operationData: {
-                  template: '<iframe src="//www.google.com/maps/embed/v1/place?q=Harrods,Brompton%20Rd,%20UK&zoom=17" class="google-maps-container"></iframe>'
-                }
-              }
-            ],
-            endOperations: [
-              {
-                systemName: "selectElement",
-                operationData: {
-                  selector: ".main-view-container"
-                }
-              },
-              {
-                systemName: "clearElement"
-              }
-            ]
-          },
-          {
-            name: "ShowGoogleMapsHistoryItem",
-            duration: {
-              start: 24
-            },
-            startOperations: [
-              {
-                systemName: "selectElement",
-                operationData: {
-                  selector: ".view-history-container"
-                }
-              },
-              {
-                systemName: "setElementContent",
-                operationData: {
-                  template: '<div class="view-history-item" id="view-history-item-2"><span class="huge">2</span></div>',
-                  append: true
-                }
-              }
-            ],
-            endOperations: [
-              {
-                systemName: "selectElement",
-                operationData: {
-                  selector: "#view-history-item-2"
-                }
-              },
-              {
-                systemName: "removeElement"
-              }
-            ]
-          }
-        ]
+        timelineActions: []
       }
     ],
     timelineFlow: {
@@ -23882,12 +23757,6 @@
           return { [name2]: endLoop$1 };
         case name2 === "broadcastEvent":
           return { [name2]: broadcastEvent$1 };
-        case name2 === "addClass":
-          return { [name2]: addClass$1 };
-        case name2 === "removeElement":
-          return { [name2]: removeElement$1 };
-        case name2 === "clearElement":
-          return { [name2]: clearElement$1 };
         case name2 === "layoutTemplate":
           return { [name2]: layout_template_default };
         case name2 === "testSubtitles":
