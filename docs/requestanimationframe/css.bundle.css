@@ -10,3 +10,14 @@ body {
   width: 100%;
   margin: 0;
 }
+.play-controls {
+  display: flex;
+  flex-direction: "row";
+  gap: 5px;
+}
+.play-controls button {
+  border: 1px solid grey;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}

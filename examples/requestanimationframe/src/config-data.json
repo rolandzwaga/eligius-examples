@@ -24,6 +24,120 @@
   ],
   "initActions": [
     {
+      "name": "RewindControl",
+      "startOperations": [
+        {
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-id='rewind']"
+          }
+        },
+        {
+          "systemName": "getControllerInstance",
+          "operationData": {
+            "systemName": "EventListenerController"
+          }
+        },
+        {
+          "systemName": "addControllerToElement",
+          "operationData": {
+            "eventName": "click",
+            "actions": ["BroadcastRewindRequest"]
+          }
+        }
+      ],
+      "endOperations": [
+        {
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-id='rewind']"
+          }
+        },
+        {
+          "systemName": "removeControllerFromElement",
+          "operationData": {
+            "systemName": "EventListenerController"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PlayControl",
+      "startOperations": [
+        {
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-id='play']"
+          }
+        },
+        {
+          "systemName": "getControllerInstance",
+          "operationData": {
+            "systemName": "EventListenerController"
+          }
+        },
+        {
+          "systemName": "addControllerToElement",
+          "operationData": {
+            "eventName": "click",
+            "actions": ["BroadcastPlayRequest"]
+          }
+        }
+      ],
+      "endOperations": [
+        {
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-id='play']"
+          }
+        },
+        {
+          "systemName": "removeControllerFromElement",
+          "operationData": {
+            "systemName": "EventListenerController"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PauseControl",
+      "startOperations": [
+        {
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-id='pause']"
+          }
+        },
+        {
+          "systemName": "getControllerInstance",
+          "operationData": {
+            "systemName": "EventListenerController"
+          }
+        },
+        {
+          "systemName": "addControllerToElement",
+          "operationData": {
+            "eventName": "click",
+            "actions": ["BroadcastPauseRequest"]
+          }
+        }
+      ],
+      "endOperations": [
+        {
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-id='pause']"
+          }
+        },
+        {
+          "systemName": "removeControllerFromElement",
+          "operationData": {
+            "systemName": "EventListenerController"
+          }
+        }
+      ]
+    },
+    {
       "name": "MainTitleLabel",
       "startOperations": [
         {
@@ -265,6 +379,43 @@
           "operationData": {
             "eventName": "language-change",
             "eventArgs": ["operationData.targetValue"]
+          }
+        }
+      ],
+      "endOperations": []
+    },
+    {
+      "name": "BroadcastRewindRequest",
+      "startOperations": [
+        {
+          "systemName": "broadcastEvent",
+          "operationData": {
+            "eventName": "timeline-seek-request",
+            "eventArgs": [0]
+          }
+        }
+      ],
+      "endOperations": []
+    },
+    {
+      "name": "BroadcastPlayRequest",
+      "startOperations": [
+        {
+          "systemName": "broadcastEvent",
+          "operationData": {
+            "eventName": "timeline-play-request"
+          }
+        }
+      ],
+      "endOperations": []
+    },
+    {
+      "name": "BroadcastPauseRequest",
+      "startOperations": [
+        {
+          "systemName": "broadcastEvent",
+          "operationData": {
+            "eventName": "timeline-pause-request"
           }
         }
       ],

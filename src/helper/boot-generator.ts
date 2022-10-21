@@ -29,14 +29,14 @@ function _generateBootSource(
   );
   lines.push("import {createEngine, createEditor} from './create-engine';");
   lines.push(
-    "window.createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window));"
+    "(window as any).createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window));"
   );
   lines.push("(window as any).engine = null;");
   lines.push(
     "const writableConfig = JSON.parse(JSON.stringify((engineConfig as any).default)) as IEngineConfiguration;"
   );
   lines.push("createEditor(writableConfig);");
-  lines.push("createWithFactory(writableConfig);");
+  lines.push("(window as any).createWithFactory(writableConfig);");
 
   return lines.join("\n");
 }

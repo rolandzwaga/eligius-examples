@@ -2,7 +2,7 @@ import { IEligiusEngine, IEngineConfiguration, IEngineFactory } from "eligius";
 import * as monaco from "monaco-editor";
 
 self.MonacoEnvironment = {
-  getWorkerUrl: function (moduleId, label) {
+  getWorkerUrl: function (_, label) {
     if (label === "json") {
       return "./json.worker.bundle.js";
     }
@@ -16,7 +16,7 @@ export function createEditor(oonfiguration: IEngineConfiguration) {
   monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
     schemas: [
       {
-        uri: "https://localhost:3333/jsonschema/eligius-configuration.json",
+        uri: "https://rolandzwaga.github.io/eligius/jsonschema/eligius-configuration.json",
         fileMatch: ["*.json"],
       },
     ],
