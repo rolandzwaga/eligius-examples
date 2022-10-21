@@ -57,6 +57,10 @@
           "operationData": {
             "systemName": "LabelController"
           }
+        },
+        {
+          "id": "bec08c61-34df-415d-937d-065294bd9f44",
+          "systemName": "clearElement"
         }
       ]
     },
@@ -199,6 +203,17 @@
           "operationData": {
             "controllerName": "EventListenerController"
           }
+        },
+        {
+          "id": "bec08c61-34df-415d-937d-065294bd9f44",
+          "systemName": "selectElement",
+          "operationData": {
+            "selector": "[data-selector-container=true]"
+          }
+        },
+        {
+          "id": "bec08c61-34df-415d-937d-065294bd9f44",
+          "systemName": "clearElement"
         }
       ]
     },

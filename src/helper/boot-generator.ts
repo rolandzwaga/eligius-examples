@@ -1,6 +1,4 @@
-import fs from "fs";
 import path from "path";
-import dashToCamelCase from "./dash-to-camel-case";
 
 function generateBootSourceCode(config: any, configPath: string) {
   const dirName = path.dirname(configPath);
@@ -29,7 +27,7 @@ function _generateBootSource(
   lines.push(
     "import WebpackResourceImporter from './webpack-resource-importer';"
   );
-  lines.push("import {createEngine} from './create-engine';");
+  lines.push("import {createEngine, createEditor} from './create-engine';");
   lines.push(
     "window.createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window));"
   );
@@ -37,23 +35,10 @@ function _generateBootSource(
   lines.push(
     "const writableConfig = JSON.parse(JSON.stringify((engineConfig as any).default)) as IEngineConfiguration;"
   );
-  lines.push(
-    "const configElm = document.getElementById('config-text') as HTMLTextAreaElement;"
-  );
-  lines.push(
-    "if (configElm) { configElm.value = JSON.stringify(writableConfig, null, 2); }"
-  );
+  lines.push("createEditor(writableConfig);");
   lines.push("createWithFactory(writableConfig);");
 
   return lines.join("\n");
-}
-
-function _generateCssImports(cssPath: string) {
-  const entries = fs.readdirSync(cssPath);
-  return entries.map((file) => {
-    const importName = `css_${dashToCamelCase(path.basename(file, ".css"))}`;
-    return `import ${importName} from './css/${file}';`;
-  });
 }
 
 export default generateBootSourceCode;

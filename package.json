@@ -11,7 +11,8 @@
     "eligius": "1.0.3",
     "jquery": "3.6.0",
     "lottie-web": "5.8.1",
-    "mediaelement": "5.0.4"
+    "mediaelement": "5.0.4",
+    "monaco-editor": "^0.34.1"
   },
   "scripts": {
     "build-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js"
