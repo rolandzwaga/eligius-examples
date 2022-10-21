@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import dashToCamelCase from "./dashToCamelCase";
+import dashToCamelCase from "./dash-to-camel-case";
 
 function generateBootSourceCode(config: any, configPath: string) {
   const dirName = path.dirname(configPath);
@@ -29,19 +29,21 @@ function _generateBootSource(
   lines.push(
     "import WebpackResourceImporter from './webpack-resource-importer';"
   );
+  lines.push("import {createEngine} from './create-engine';");
   lines.push(
-    "const factory = new EngineFactory(new WebpackResourceImporter(), window);"
+    "window.createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window));"
+  );
+  lines.push("(window as any).engine = null;");
+  lines.push(
+    "const writableConfig = JSON.parse(JSON.stringify((engineConfig as any).default)) as IEngineConfiguration;"
   );
   lines.push(
-    "const writableConfig = JSON.parse(JSON.stringify(engineConfig.default)) as IEngineConfiguration;"
+    "const configElm = document.getElementById('config-text') as HTMLTextAreaElement;"
   );
   lines.push(
-    "document.getElementById('config-text').value = JSON.stringify(writableConfig, null, 2);"
+    "if (configElm) { configElm.value = JSON.stringify(writableConfig, null, 2); }"
   );
-  lines.push("const engine = factory.createEngine(writableConfig);");
-  lines.push(
-    "engine.init().then(()=> {console.log('Eligius engine ready for business');});"
-  );
+  lines.push("createWithFactory(writableConfig);");
 
   return lines.join("\n");
 }

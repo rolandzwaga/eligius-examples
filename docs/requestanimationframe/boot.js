@@ -58,15 +58,15 @@
   // node_modules/lottie-web/build/player/lottie.js
   var require_lottie = __commonJS({
     "node_modules/lottie-web/build/player/lottie.js"(exports, module) {
-      typeof navigator !== "undefined" && function(root, factory2) {
+      typeof navigator !== "undefined" && function(root, factory) {
         if (typeof define === "function" && define.amd) {
           define(function() {
-            return factory2(root);
+            return factory(root);
           });
         } else if (typeof module === "object" && module.exports) {
-          module.exports = factory2(root);
+          module.exports = factory(root);
         } else {
-          root.lottie = factory2(root);
+          root.lottie = factory(root);
           root.bodymovin = root.lottie;
         }
       }(window || {}, function(window) {
@@ -3485,9 +3485,9 @@
           var modifiers = {};
           ob2.registerModifier = registerModifier;
           ob2.getModifier = getModifier;
-          function registerModifier(nm, factory2) {
+          function registerModifier(nm, factory) {
             if (!modifiers[nm]) {
-              modifiers[nm] = factory2;
+              modifiers[nm] = factory;
             }
           }
           function getModifier(nm, elem2, data2) {
@@ -6016,7 +6016,7 @@
             shapePath.c = false;
           }
           function clone(shape) {
-            var cloned = factory2.newElement();
+            var cloned = factory.newElement();
             var i;
             var len = shape._length === void 0 ? shape.v.length : shape._length;
             cloned.setLength(len);
@@ -6026,9 +6026,9 @@
             }
             return cloned;
           }
-          var factory2 = poolFactory(4, create, release);
-          factory2.clone = clone;
-          return factory2;
+          var factory = poolFactory(4, create, release);
+          factory.clone = clone;
+          return factory;
         }();
         var shapeCollectionPool = function() {
           var ob2 = {
@@ -14745,17 +14745,17 @@
   // node_modules/jquery/dist/jquery.js
   var require_jquery = __commonJS({
     "node_modules/jquery/dist/jquery.js"(exports2, module2) {
-      (function(global, factory2) {
+      (function(global, factory) {
         "use strict";
         if (typeof module2 === "object" && typeof module2.exports === "object") {
-          module2.exports = global.document ? factory2(global, true) : function(w) {
+          module2.exports = global.document ? factory(global, true) : function(w) {
             if (!w.document) {
               throw new Error("jQuery requires a window with a document");
             }
-            return factory2(w);
+            return factory(w);
           };
         } else {
-          factory2(global);
+          factory(global);
         }
       })(typeof window !== "undefined" ? window : exports2, function(window2, noGlobal) {
         "use strict";
@@ -22932,7 +22932,7 @@
         resultCallback(null);
       }
     };
-    _proto.createEngine = function createEngine(configuration, resolver) {
+    _proto.createEngine = function createEngine2(configuration, resolver) {
       var _configuration$eventA, _this2 = this;
       var systemName = configuration.engine.systemName;
       var EngineClass = this._importSystemEntry(systemName);
@@ -23780,14 +23780,41 @@
   };
   var webpack_resource_importer_default = WebpackResourceImporter;
 
+  // examples/requestanimationframe/src/create-engine.ts
+  function createEngine(factory, engineConfiguration) {
+    const currentEngine = window.engine;
+    if (currentEngine) {
+      currentEngine.destroy();
+    }
+    const newEngine = factory.createEngine(engineConfiguration);
+    newEngine.init().then(() => {
+      console.log("Eligius engine ready for business");
+    });
+    window.engine = newEngine;
+  }
+  function reload() {
+    const textarea = document.getElementById(
+      "config-text"
+    );
+    const configText = textarea.value;
+    try {
+      const config = JSON.parse(configText);
+      window.createWithFactory(config);
+    } catch (e) {
+      alert("Invalid json!");
+    }
+  }
+  window.reload = reload;
+
   // examples/requestanimationframe/src/boot.ts
-  var factory = new EngineFactory(new webpack_resource_importer_default(), window);
+  window.createWithFactory = createEngine.bind(null, new EngineFactory(new webpack_resource_importer_default(), window));
+  window.engine = null;
   var writableConfig = JSON.parse(JSON.stringify(config_data_default));
-  document.getElementById("config-text").value = JSON.stringify(writableConfig, null, 2);
-  var engine = factory.createEngine(writableConfig);
-  engine.init().then(() => {
-    console.log("Eligius engine ready for business");
-  });
+  var configElm = document.getElementById("config-text");
+  if (configElm) {
+    configElm.value = JSON.stringify(writableConfig, null, 2);
+  }
+  createWithFactory(writableConfig);
 })();
 /*!
  * jQuery JavaScript Library v3.6.0

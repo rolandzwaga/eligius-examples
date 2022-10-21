@@ -6,6 +6,11 @@ const htmlTemplate = fs.readFileSync("./template-index.html", {
   encoding: "utf-8",
 });
 
+fs.copyFileSync(
+  "./examples/shared/create-engine.ts",
+  "./examples/requestanimationframe/src/create-engine.ts"
+);
+
 esbuild
   .build({
     entryPoints: [

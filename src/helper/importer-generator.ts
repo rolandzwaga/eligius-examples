@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import dashToCamelCase from "./dashToCamelCase";
+import dashToCamelCase from "./dash-to-camel-case";
 import formatTypescript from "./format-typescript";
 
 interface ImportInfo {
