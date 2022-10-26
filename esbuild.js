@@ -1,5 +1,6 @@
 const esbuild = require("esbuild");
 const { htmlPlugin } = require("@craftamap/esbuild-plugin-html");
+const ignorePlugin = require("esbuild-plugin-ignore");
 const fs = require("fs");
 const path = require("path");
 const { emptyDirSync } = require("fs-extra");
@@ -35,11 +36,20 @@ esbuild
     minify: false,
     metafile: true,
     outdir: "docs/requestanimationframe",
+    external: ["fs", "path"],
     loader: {
       ".html": "text",
       ".ttf": "file",
     },
     plugins: [
+      ignorePlugin([
+        {
+          resourceRegExp: /^fs$/,
+        },
+        {
+          resourceRegExp: /^path$/,
+        },
+      ]),
       htmlPlugin({
         files: [
           {

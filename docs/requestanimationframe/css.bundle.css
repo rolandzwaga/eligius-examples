@@ -12,12 +12,45 @@ body {
 }
 .play-controls {
   display: flex;
-  flex-direction: "row";
+  flex-direction: row;
   gap: 5px;
+  justify-content: center;
+}
+.timeline-div {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #eeeeee;
+}
+.subtitles-div {
+  width: 100%;
+  height: 1.2em;
+}
+.progress-bar-container {
+  width: 100%;
+  height: 1.2em;
+  border: 1px solid #004400;
+}
+.progress-bar {
+  background-color: #00ee22;
 }
 .play-controls button {
   border: 1px solid grey;
   width: 40px;
   height: 40px;
   border-radius: 4px;
+}
+.play-controls button:hover {
+  border: 1px solid black;
+  background-color: #ffffdd;
+  cursor: pointer;
+}
+.play-controls button:active {
+  border: 1px solid black;
+  background-color: #ffffaa;
+  cursor: pointer;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }

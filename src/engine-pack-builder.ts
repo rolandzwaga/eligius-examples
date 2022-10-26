@@ -1,7 +1,7 @@
+import { generateImporterSourceCode } from "eligius";
 import fs from "fs-extra";
 import path from "path";
 import generateBootSourceCode from "./helper/boot-generator";
-import generateImporterSourceCode from "./helper/importer-generator";
 
 const configPath = process.argv[2];
 
@@ -26,7 +26,17 @@ function buildEnginePack(configurationPath: string) {
 
   const importerSource = generateImporterSourceCode(
     config,
-    path.dirname(configurationPath)
+    path.dirname(configurationPath),
+    [
+      {
+        path: "template",
+        extension: ".html",
+      },
+      {
+        path: "json",
+        extension: ".json",
+      },
+    ]
   );
   saveSource(
     importerSource,

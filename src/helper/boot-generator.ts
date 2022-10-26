@@ -6,13 +6,7 @@ function generateBootSourceCode(config: any, configPath: string) {
 
   const bootSourceCode = _generateBootSource(config, configFileName, dirName);
 
-  /*const ast = Parser.parse(bootSourceCode, {
-    ecmaVersion: 6,
-    sourceType: 'module',
-  });
-  const formattedCode = generate(ast);*/
-
-  return bootSourceCode; //formattedCode;
+  return bootSourceCode;
 }
 
 function _generateBootSource(
@@ -29,7 +23,7 @@ function _generateBootSource(
   );
   lines.push("import {createEngine, createEditor} from './create-engine';");
   lines.push(
-    "(window as any).createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window));"
+    "(window as any).createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window, {devtools: true}));"
   );
   lines.push("(window as any).engine = null;");
   lines.push(

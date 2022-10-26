@@ -7,20 +7,22 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@types/node": "18.11.2",
-    "eligius": "1.0.3",
-    "jquery": "3.6.0",
-    "lottie-web": "5.8.1",
-    "mediaelement": "5.0.4",
-    "monaco-editor": "^0.34.1"
+    "@types/node": "18.11.5",
+    "eligius": "1.0.71",
+    "jquery": "3.6.1",
+    "lottie-web": "5.9.6",
+    "mediaelement": "5.1.0",
+    "monaco-editor": "0.34.1"
   },
   "scripts": {
-    "build-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js"
+    "build-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js",
+    "clean": "npx rimraf docs/requestanimationframe"
   },
   "devDependencies": {
     "@craftamap/esbuild-plugin-html": "0.4.0",
     "@types/fs-extra": "9.0.13",
     "esbuild": "0.15.12",
+    "esbuild-plugin-ignore": "^1.1.1",
     "fs-extra": "10.1.0",
     "ts-morph": "16.0.0",
     "ts-node": "10.9.1",

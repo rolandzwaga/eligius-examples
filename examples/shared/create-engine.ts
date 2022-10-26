@@ -38,16 +38,18 @@ export async function createEngine(
   engineConfiguration: IEngineConfiguration
 ) {
   const currentEngine = (window as any).engine as IEligiusEngine;
+
   if (currentEngine) {
     await currentEngine.destroy();
   }
+
   const newEngine = factory.createEngine(engineConfiguration);
+
   newEngine.init().then(() => {
     console.log("Eligius engine ready for business");
   });
-  (window as any).engine = newEngine;
 
-  console.log("newEngine", newEngine);
+  (window as any).engine = newEngine;
 }
 
 function reload() {
