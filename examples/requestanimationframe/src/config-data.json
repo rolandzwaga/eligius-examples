@@ -184,14 +184,21 @@
         {
           "systemName": "selectElement",
           "operationData": {
-            "selector": "#progress"
+            "selector": "#progress-text"
+          }
+        },
+        {
+          "systemName": "setOperationData",
+          "operationData": {
+            "properties": {
+              "textElement": "operationData.selectedElement"
+            }
           }
         },
         {
           "systemName": "selectElement",
           "operationData": {
-            "selector": "#progress-text",
-            "propertyName": "textElement"
+            "selector": "#progress"
           }
         },
         {
