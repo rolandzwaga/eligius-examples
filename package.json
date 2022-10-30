@@ -7,8 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@types/node": "18.11.5",
-    "eligius": "1.0.81",
+    "eligius": "1.0.12",
     "jquery": "3.6.1",
     "lottie-web": "5.9.6",
     "mediaelement": "5.1.0",
@@ -21,8 +20,9 @@
   "devDependencies": {
     "@craftamap/esbuild-plugin-html": "0.4.0",
     "@types/fs-extra": "9.0.13",
+    "@types/node": "^18.11.7",
     "esbuild": "0.15.12",
-    "esbuild-plugin-ignore": "^1.1.1",
+    "esbuild-plugin-ignore": "1.1.1",
     "fs-extra": "10.1.0",
     "ts-morph": "16.0.0",
     "ts-node": "10.9.1",

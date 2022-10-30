@@ -113,10 +113,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.2.tgz#c59b7641832531264fda3f1ba610362dc9a7dfc8"
   integrity sha512-BWN3M23gLO2jVG8g/XHIRFWiiV4/GckeFIqbU/C4V3xpoBBWSMk4OZomouN0wCkfQFPqgZikyLr7DOYDysIkkw==
 
-"@types/node@18.11.5":
-  version "18.11.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.5.tgz#1bc94cf2f9ab5fe33353bc7c79c797dcc5325bef"
-  integrity sha512-3JRwhbjI+cHLAkUorhf8RnqUbFXajvzX4q6fMn5JwkgtuwfYtRQYI3u4V92vI6NJuTsbBQWWh3RZjFsuevyMGQ==
+"@types/node@^18.11.7":
+  version "18.11.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.7.tgz#8ccef136f240770c1379d50100796a6952f01f94"
+  integrity sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==
 
 abab@^2.0.5, abab@^2.0.6:
   version "2.0.6"
@@ -274,10 +274,10 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-eligius@1.0.81:
-  version "1.0.81"
-  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.81.tgz#6eb24af9cc175e30ea94e13c6e9811de3ae8fc80"
-  integrity sha512-GXbVN0xuUWySMYsfsT3110UaWzyJs9bSEivab0G4wEd5O5meamZE0qZpkPWHu5FjMjIggEkWkuvpNdXSpfUskg==
+eligius@1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.12.tgz#52695bf2fc2134564a579b99d6532ab9cb10adae"
+  integrity sha512-hwAxPVn0sIG2DBVTUmChO8NQOFeGAVcmV2z7Djcr2712E92u8IPQhJBc4+qRs8WycMEdv3wMaqOnI/iWlBzq6Q==
   dependencies:
     hotkeys-js "3.10.0"
     ts-is-present "1.2.2"
@@ -363,7 +363,7 @@ esbuild-openbsd-64@0.15.12:
   resolved "https://registry.yarnpkg.com/esbuild-openbsd-64/-/esbuild-openbsd-64-0.15.12.tgz#bd0eea1dd2ca0722ed489d88c26714034429f8ae"
   integrity sha512-1o1uAfRTMIWNOmpf8v7iudND0L6zRBYSH45sofCZywrcf7NcZA+c7aFsS1YryU+yN7aRppTqdUK1PgbZVaB1Dw==
 
-esbuild-plugin-ignore@^1.1.1:
+esbuild-plugin-ignore@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/esbuild-plugin-ignore/-/esbuild-plugin-ignore-1.1.1.tgz#a83be27a9a1b742700b547c1e50a9f2ec3775f02"
   integrity sha512-RVh45nlpiFiBJuw687Qh935VQvSzIA4rkBBytYYb5M3bTQcxokULQFQW6Sj0YHbFR6thNWmQYFkBghEQt5D3jg==

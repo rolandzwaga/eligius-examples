@@ -3,6 +3,30 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+  font-family: 'Bebas';
+}
+
+@font-face {
+  font-family: Bebas;
+  src: url("Bebas-Regular.otf") format("opentype");
+}
+
+.fade-in {
+  animation: fadeIn 0.3s;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 #ct-container {
@@ -18,7 +42,7 @@ body {
   justify-content: center;
 }
 
-.timeline-div {
+.main-presentation {
   width: 100%;
   height: 200px;
   border: 1px solid #eeeeee;

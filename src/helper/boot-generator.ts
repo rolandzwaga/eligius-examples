@@ -23,7 +23,7 @@ function _generateBootSource(
   );
   lines.push("import {createEngine, createEditor} from './create-engine';");
   lines.push(
-    "(window as any).createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window, {devtools: true}));"
+    "(window as any).createWithFactory = createEngine.bind(null, new EngineFactory(new WebpackResourceImporter(), window, {devtools: false}));"
   );
   lines.push("(window as any).engine = null;");
   lines.push(

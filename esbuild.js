@@ -40,6 +40,7 @@ esbuild
     loader: {
       ".html": "text",
       ".ttf": "file",
+      ".otf": "file",
     },
     plugins: [
       ignorePlugin([

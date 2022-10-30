@@ -1,10 +1,12 @@
 {
+  "$schema": "https://rolandzwaga.github.io/eligius/jsonschema/eligius-configuration.json",
   "id": "6291bf4c-07fb-49c6-9005-2dca98d1b3af",
   "engine": {
     "systemName": "EligiusEngine"
   },
   "timelineProviderSettings": {
     "animation": {
+      "id": "d925e0aa-5295-41fe-829f-f968da93e21e",
       "vendor": "eligius",
       "systemName": "RequestAnimationFrameTimelineProvider"
     }
@@ -23,6 +25,29 @@
     }
   ],
   "initActions": [
+    {
+      "name": "GetUserName",
+      "startOperations": [
+        {
+          "systemName": "getQueryParams",
+          "operationData": {
+            "defaultValues": {
+              "username": "guest"
+            }
+          }
+        },
+        {
+          "systemName": "setGlobalData",
+          "operationData": {
+            "properties": ["queryParams"]
+          }
+        },
+        {
+          "systemName": "log"
+        }
+      ],
+      "endOperations": []
+    },
     {
       "name": "RewindControl",
       "startOperations": [
@@ -56,7 +81,7 @@
         {
           "systemName": "removeControllerFromElement",
           "operationData": {
-            "systemName": "EventListenerController"
+            "controllerName": "EventListenerController"
           }
         }
       ]
@@ -94,7 +119,7 @@
         {
           "systemName": "removeControllerFromElement",
           "operationData": {
-            "systemName": "EventListenerController"
+            "controllerName": "EventListenerController"
           }
         }
       ]
@@ -132,7 +157,7 @@
         {
           "systemName": "removeControllerFromElement",
           "operationData": {
-            "systemName": "EventListenerController"
+            "controllerName": "EventListenerController"
           }
         }
       ]
@@ -157,6 +182,12 @@
           "operationData": {
             "labelId": "mainTitle"
           }
+        },
+        {
+          "systemName": "addClass",
+          "operationData": {
+            "className": "fade-in"
+          }
         }
       ],
       "endOperations": [
@@ -169,7 +200,7 @@
         {
           "systemName": "removeControllerFromElement",
           "operationData": {
-            "systemName": "LabelController"
+            "controllerName": "LabelController"
           }
         },
         {
@@ -224,7 +255,7 @@
         {
           "systemName": "removeControllerFromElement",
           "operationData": {
-            "systemName": "ProgressbarController"
+            "controllerName": "ProgressbarController"
           }
         }
       ]
@@ -371,7 +402,7 @@
         {
           "systemName": "removeControllerFromElement",
           "operationData": {
-            "systemName": "SubtitlesController"
+            "controllerName": "SubtitlesController"
           }
         }
       ]
@@ -427,6 +458,51 @@
         }
       ],
       "endOperations": []
+    },
+    {
+      "name": "AddTextToElement",
+      "startOperations": [
+        {
+          "systemName": "selectElement"
+        },
+        {
+          "systemName": "setElementContent"
+        },
+        {
+          "systemName": "setOperationData",
+          "operationData": {
+            "properties": {
+              "selector": "operationdata.labelSelector"
+            }
+          }
+        },
+        {
+          "systemName": "selectElement"
+        },
+        {
+          "systemName": "getControllerInstance",
+          "operationData": {
+            "systemName": "LabelController"
+          }
+        },
+        {
+          "systemName": "addControllerToElement"
+        }
+      ],
+      "endOperations": [
+        {
+          "systemName": "selectElement"
+        },
+        {
+          "systemName": "removeControllerFromElement",
+          "operationData": {
+            "systemName": "LabelController"
+          }
+        },
+        {
+          "systemName": "removeElement"
+        }
+      ]
     }
   ],
   "timelines": [
@@ -435,26 +511,53 @@
       "uri": "animation-01",
       "duration": 45,
       "loop": true,
-      "selector": ".timeline-div",
-      "timelineActions": []
+      "selector": ".main-presentation",
+      "timelineActions": [
+        {
+          "name": "AddIntro",
+          "duration": {
+            "start": 1,
+            "end": 5
+          },
+          "startOperations": [
+            {
+              "systemName": "requestAction",
+              "operationData": {
+                "systemName": "AddTextToElement"
+              }
+            },
+            {
+              "systemName": "startAction",
+              "operationData": {
+                "actionOperationData": {
+                  "selector": ".main-presentation",
+                  "template": "<div class=\"intro-text\" data-text-intro></div>",
+                  "labelSelector": "[data-text-intro]",
+                  "labelId": "introText1"
+                }
+              }
+            }
+          ],
+          "endOperations": [
+            {
+              "systemName": "requestAction",
+              "operationData": {
+                "systemName": "AddTextToElement"
+              }
+            },
+            {
+              "systemName": "endAction",
+              "operationData": {
+                "actionOperationData": {
+                  "selector": "[data-text-intro]"
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
-  "timelineFlow": {
-    "id": "11-22-33",
-    "uri": "animation-01",
-    "children": [
-      {
-        "id": "44-55-66",
-        "uri": "animation-02",
-        "param": true
-      },
-      {
-        "id": "77-88-99",
-        "uri": "animation-03",
-        "param": false
-      }
-    ]
-  },
   "eventActions": [],
   "labels": [
     {
@@ -462,11 +565,24 @@
       "labels": [
         {
           "languageCode": "en-US",
-          "label": "This is the main title"
+          "label": "Eligius de-mystified"
         },
         {
           "languageCode": "nl-NL",
-          "label": "Dit is de hoofdtitel"
+          "label": "Eligius ontmystificeerd"
+        }
+      ]
+    },
+    {
+      "id": "introText1",
+      "labels": [
+        {
+          "languageCode": "en-US",
+          "label": "So, what exactly is Eligius?"
+        },
+        {
+          "languageCode": "nl-NL",
+          "label": "Dus, wat is Eligius precies?"
         }
       ]
     }
