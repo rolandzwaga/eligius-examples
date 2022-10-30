@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "eligius": "1.0.12",
+    "eligius": "1.0.13",
     "jquery": "3.6.1",
     "lottie-web": "5.9.6",
     "mediaelement": "5.1.0",
