@@ -466,7 +466,10 @@
           "systemName": "selectElement"
         },
         {
-          "systemName": "setElementContent"
+          "systemName": "setElementContent",
+          "operationData": {
+            "insertionType": "append"
+          }
         },
         {
           "systemName": "setOperationData",
@@ -487,6 +490,12 @@
         },
         {
           "systemName": "addControllerToElement"
+        },
+        {
+          "systemName": "addClass",
+          "operationData": {
+            "className": "fade-in"
+          }
         }
       ],
       "endOperations": [
@@ -517,7 +526,7 @@
           "name": "AddIntro",
           "duration": {
             "start": 1,
-            "end": 5
+            "end": 10
           },
           "startOperations": [
             {
@@ -531,7 +540,7 @@
               "operationData": {
                 "actionOperationData": {
                   "selector": ".main-presentation",
-                  "template": "<div class=\"intro-text\" data-text-intro></div>",
+                  "template": "<div class=\"intro-text\"><div data-text-intro></div></div>",
                   "labelSelector": "[data-text-intro]",
                   "labelId": "introText1"
                 }
@@ -550,6 +559,48 @@
               "operationData": {
                 "actionOperationData": {
                   "selector": "[data-text-intro]"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "AddIntro2",
+          "duration": {
+            "start": 3,
+            "end": 10
+          },
+          "startOperations": [
+            {
+              "systemName": "requestAction",
+              "operationData": {
+                "systemName": "AddTextToElement"
+              }
+            },
+            {
+              "systemName": "startAction",
+              "operationData": {
+                "actionOperationData": {
+                  "selector": ".intro-text",
+                  "template": "<div data-text-intro2></div>",
+                  "labelSelector": "[data-text-intro2]",
+                  "labelId": "introText2"
+                }
+              }
+            }
+          ],
+          "endOperations": [
+            {
+              "systemName": "requestAction",
+              "operationData": {
+                "systemName": "AddTextToElement"
+              }
+            },
+            {
+              "systemName": "endAction",
+              "operationData": {
+                "actionOperationData": {
+                  "selector": "[data-text-intro2]"
                 }
               }
             }
@@ -583,6 +634,19 @@
         {
           "languageCode": "nl-NL",
           "label": "Dus, wat is Eligius precies?"
+        }
+      ]
+    },
+    {
+      "id": "introText2",
+      "labels": [
+        {
+          "languageCode": "en-US",
+          "label": "Well, in short, it's a story telling engine!"
+        },
+        {
+          "languageCode": "nl-NL",
+          "label": "Nouja, in het kort, het is een verhalenmachine!"
         }
       ]
     }
