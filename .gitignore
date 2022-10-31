@@ -1,3 +1,4 @@
 node_modules
 /examples/requestanimationframe/src/boot.ts
 /examples/requestanimationframe/src/webpack-resource-importer.ts
+/examples/requestanimationframe/src/config-data.json
