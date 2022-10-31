@@ -113,10 +113,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.2.tgz#c59b7641832531264fda3f1ba610362dc9a7dfc8"
   integrity sha512-BWN3M23gLO2jVG8g/XHIRFWiiV4/GckeFIqbU/C4V3xpoBBWSMk4OZomouN0wCkfQFPqgZikyLr7DOYDysIkkw==
 
-"@types/node@^18.11.7":
-  version "18.11.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.7.tgz#8ccef136f240770c1379d50100796a6952f01f94"
-  integrity sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==
+"@types/node@18.11.8":
+  version "18.11.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.8.tgz#16d222a58d4363a2a359656dd20b28414de5d265"
+  integrity sha512-uGwPWlE0Hj972KkHtCDVwZ8O39GmyjfMane1Z3GUBGGnkZ2USDq7SxLpVIiIHpweY9DS0QTDH0Nw7RNBsAAZ5A==
 
 abab@^2.0.5, abab@^2.0.6:
   version "2.0.6"
@@ -274,10 +274,10 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-eligius@1.0.13:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.13.tgz#67e4395d1556c47da0c810a0993d3bddd17982e2"
-  integrity sha512-8RzxLJo6bsqTKFgmtlpHY+4ezibxCeBu82+UnLFWZjRoSRQ8frBw+CWBiokIAeK3P6jTPum9qLaoTRD2E01YLQ==
+eligius@1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.14.tgz#f0eefe35b22a93b80cbc4d054ebdd1498f0b76b2"
+  integrity sha512-Bhy/6PEqvNk6aWc+iw2gQDMVNCFnJgRYSoKjg5xgVIAaOs/FzA8Z6e/4HieSvnjz3MIae2txrig8g/sce0hDXQ==
   dependencies:
     hotkeys-js "3.10.0"
     ts-is-present "1.2.2"

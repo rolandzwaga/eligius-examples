@@ -41,9 +41,6 @@
           "operationData": {
             "properties": ["queryParams"]
           }
-        },
-        {
-          "systemName": "log"
         }
       ],
       "endOperations": []
@@ -523,6 +520,38 @@
       "selector": ".main-presentation",
       "timelineActions": [
         {
+          "name": "AddIntroContainer",
+          "duration": {
+            "start": 0,
+            "end": 10
+          },
+          "startOperations": [
+            {
+              "systemName": "selectElement",
+              "operationData": {
+                "selector": ".main-presentation"
+              }
+            },
+            {
+              "systemName": "setElementContent",
+              "operationData": {
+                "template": "<div class=\"intro-text\"></div>"
+              }
+            }
+          ],
+          "endOperations": [
+            {
+              "systemName": "selectElement",
+              "operationData": {
+                "selector": ".intro-text"
+              }
+            },
+            {
+              "systemName": "removeElement"
+            }
+          ]
+        },
+        {
           "name": "AddIntro",
           "duration": {
             "start": 0,
@@ -539,8 +568,8 @@
               "systemName": "startAction",
               "operationData": {
                 "actionOperationData": {
-                  "selector": ".main-presentation",
-                  "template": "<div class=\"intro-text\"><div data-text-intro></div></div>",
+                  "selector": ".intro-text",
+                  "template": "<div data-text-intro></div>",
                   "labelSelector": "[data-text-intro]",
                   "labelId": "introText1"
                 }
