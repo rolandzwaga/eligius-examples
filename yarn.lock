@@ -113,10 +113,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.2.tgz#c59b7641832531264fda3f1ba610362dc9a7dfc8"
   integrity sha512-BWN3M23gLO2jVG8g/XHIRFWiiV4/GckeFIqbU/C4V3xpoBBWSMk4OZomouN0wCkfQFPqgZikyLr7DOYDysIkkw==
 
-"@types/node@18.11.8":
-  version "18.11.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.8.tgz#16d222a58d4363a2a359656dd20b28414de5d265"
-  integrity sha512-uGwPWlE0Hj972KkHtCDVwZ8O39GmyjfMane1Z3GUBGGnkZ2USDq7SxLpVIiIHpweY9DS0QTDH0Nw7RNBsAAZ5A==
+"@types/node@18.11.9":
+  version "18.11.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
+  integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
 
 abab@^2.0.5, abab@^2.0.6:
   version "2.0.6"
@@ -274,10 +274,10 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-eligius@1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.15.tgz#c3b131c6a3170bcd809d9b1a68e71ad23f3ff1ec"
-  integrity sha512-YQ3YHaZf7KyP9hVjlq1Bapa1TuN0ZDOgW/ErnBRTSmFu5aWgKYcMUIhOVqnRLqMgWF5LKxqSzAoi93W0pc6Dnw==
+eligius@1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.16.tgz#fb857ec1007c591feb399cabfc4b0b055508e0c4"
+  integrity sha512-H2kyW8Qkl6rZPkPqIZTmAVi5rjaZpApd3qfqDZ/GGsRLWgeUs/elsD55H8089dHxrYHGgkOH6yQ0MBF8Jkvpsg==
   dependencies:
     hotkeys-js "3.10.0"
     ts-is-present "1.2.2"
@@ -885,10 +885,10 @@ ts-node@10.9.1:
     v8-compile-cache-lib "^3.0.1"
     yn "3.1.1"
 
-tslib@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
-  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+tslib@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.1.tgz#0d0bfbaac2880b91e22df0768e55be9753a5b17e"
+  integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
 
 type-check@~0.3.2:
   version "0.3.2"
