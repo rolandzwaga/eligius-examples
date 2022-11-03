@@ -6,6 +6,7 @@ import {
   ConfigurationFactory,
   EndableActionCreator,
   getControllerInstance,
+  log,
   removeControllerFromElement,
   selectElement,
   setElementContent,
@@ -25,9 +26,9 @@ export const TIMELINE_TITLE = "what-is-eligius";
 export const TIMELINE_LENGTH_IN_SECS = 100;
 
 const factory = new ConfigurationFactory()
-  .init("nl-NL")
+  .init("en-US")
+  .addLanguage("en-US", "English")
   .addLanguage("nl-NL", "Nederlands")
-  .addLanguage("en-GB", "English")
   .setLayoutTemplate("template:layoutTemplate")
   .setContainerSelector("#ct-container")
   .addTimeline(
@@ -93,10 +94,13 @@ actionCreator
 actionCreator = factory.createAction(
   ACTION_TEMPLATE_NAMES.BroadcastLanguageChange
 );
-actionCreator.addStartOperationByType(broadcastEvent, {
-  eventName: TimelineEventNames.LANGUAGE_CHANGE,
-  eventArgs: ["operationData.targetValue"],
-});
+actionCreator
+  .addStartOperationByType(log, {})
+  .addStartOperationByType(broadcastEvent, {
+    eventName: TimelineEventNames.LANGUAGE_CHANGE,
+    eventArgs: ["operationData.targetValue"],
+  })
+  .addStartOperationByType(log, {});
 
 // End: Action templates
 
@@ -126,3 +130,4 @@ const customFactory = ConfigurationFactory.extendMultiple(
 );
 
 export { customFactory };
+

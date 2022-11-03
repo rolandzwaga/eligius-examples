@@ -3,21 +3,29 @@ import {
   clearElement,
   createElement,
   endLoop,
+  endWhen,
   getControllerInstance,
   getQueryParams,
   IEngineConfiguration,
+  otherwise,
   removeControllerFromElement,
   removeElement,
+  removePropertiesFromOperationData,
   selectElement,
   setElementContent,
   setGlobalData,
   setOperationData,
   startLoop,
   TimelineEventNames,
+  when,
 } from "eligius";
 import fs from "fs";
 import path from "path";
-import { customFactory, TIMELINE_TITLE } from "./custom-factory";
+import {
+  ACTION_TEMPLATE_NAMES,
+  customFactory,
+  TIMELINE_TITLE,
+} from "./custom-factory";
 
 // START: Initialization actions
 
@@ -85,7 +93,7 @@ initActionCreator
   })
   .addStartOperationByType(createElement, {
     elementName: "select",
-    attributes: { "data-language-selector": true, defaultValue: "nl-NL" },
+    attributes: { "data-language-selector": true, defaultValue: "en-US" },
   })
   .addStartOperationByType(setElementContent, { insertionType: "prepend" })
   .addStartOperationByType(selectElement, {
@@ -94,12 +102,27 @@ initActionCreator
   .addStartOperationByType(startLoop, {
     collection: "config:availableLanguages",
   })
+  .addStartOperationByType(when, {
+    expression:
+      "context.parent.currentItem.languageCode==globaldata.defaultLanguage",
+  })
+  .addStartOperationByType(setOperationData, {
+    properties: {
+      isSelectedItem: true,
+    },
+  })
+  .addStartOperationByType(otherwise, {})
+  .addStartOperationByType(removePropertiesFromOperationData, {
+    propertyNames: ["isSelectedItem"],
+  })
+  .addStartOperationByType(endWhen, {})
   .addStartOperationByType(createElement, {
     elementName: "option",
     attributes: {
-      value: "operationdata.currentItem.languageCode",
+      value: "context.currentItem.languageCode",
+      selected: "operationData.isSelectedItem",
     },
-    text: "operationdata.currentItem.label",
+    text: "context.currentItem.label",
   })
   .addStartOperationByType(setElementContent, { insertionType: "append" })
   .addStartOperationByType(endLoop, {})
@@ -108,7 +131,7 @@ initActionCreator
   })
   .addStartOperationByType(addControllerToElement, {
     eventName: "change",
-    actions: ["BroadcastLanguageChange"],
+    actions: [ACTION_TEMPLATE_NAMES.BroadcastLanguageChange],
   } as any)
   .addEndOperationByType(selectElement, {
     selector: "[data-language-selector=true]",
