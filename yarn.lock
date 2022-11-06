@@ -274,10 +274,10 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-eligius@1.0.20:
-  version "1.0.20"
-  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.0.20.tgz#cb9d86f01c3d617de646f25835ff8b77547d5dfa"
-  integrity sha512-Mswhf9elXf1v74mYLcCbxJDuQUOEDjYQM5DT23vySAldGBx+lTZQ0VpHS3OJnw3Rp3yWFlIN1jxpRRvn9v3csA==
+eligius@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.1.0.tgz#3a6ae6f5c987d5ba705b5754c7ce29cfd502ab99"
+  integrity sha512-JaNVOlzoW7oU5Yujdy5qg/QShO+2T6mLUQd0iEfy7DDxU74yp2KfjQuUtv88o4OhQcJ2uitSdiYBO+Lqtdm+8A==
   dependencies:
     hotkeys-js "3.10.0"
     ts-is-present "1.2.2"

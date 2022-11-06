@@ -42,8 +42,7 @@ const factory = new ConfigurationFactory()
   .addProvider("animation")
   .setSystemName("RequestAnimationFrameTimelineProvider")
   .setVendor("eligius")
-  .next()
-  .next();
+  .end();
 
 // Start: Action templates
 
