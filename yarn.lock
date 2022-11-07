@@ -274,14 +274,9 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-eligius@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/eligius/-/eligius-1.1.0.tgz#3a6ae6f5c987d5ba705b5754c7ce29cfd502ab99"
-  integrity sha512-JaNVOlzoW7oU5Yujdy5qg/QShO+2T6mLUQd0iEfy7DDxU74yp2KfjQuUtv88o4OhQcJ2uitSdiYBO+Lqtdm+8A==
-  dependencies:
-    hotkeys-js "3.10.0"
-    ts-is-present "1.2.2"
-    uuid "9.0.0"
+"eligius@link:../eligius/dist":
+  version "0.0.0"
+  uid ""
 
 esbuild-android-64@0.15.13:
   version "0.15.13"
@@ -510,11 +505,6 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
-
-hotkeys-js@3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/hotkeys-js/-/hotkeys-js-3.10.0.tgz#2bbd13de4aa002fa916c34e3859239924311e35a"
-  integrity sha512-20xeVdOqcgTkMox0+BqFwADZP7+5dy/9CFPpAinSMh2d0s3b0Hs2V2D+lMh4Hphkf7VE9pwnOl58eP1te+REcg==
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
@@ -853,11 +843,6 @@ tr46@^3.0.0:
   dependencies:
     punycode "^2.1.1"
 
-ts-is-present@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/ts-is-present/-/ts-is-present-1.2.2.tgz#ba59b4a9d2bc22b99d1ba7f4af3d5eb320408d95"
-  integrity sha512-cA5MPLWGWYXvnlJb4TamUUx858HVHBsxxdy8l7jxODOLDyGYnQOllob2A2jyDghGa5iJHs2gzFNHvwGJ0ZfR8g==
-
 ts-morph@16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/ts-morph/-/ts-morph-16.0.0.tgz#35caca7c286dd70e09e5f72af47536bf3b6a27af"
@@ -919,11 +904,6 @@ url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
-
-uuid@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
-  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

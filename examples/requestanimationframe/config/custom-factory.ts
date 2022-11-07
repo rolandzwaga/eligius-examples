@@ -1,12 +1,13 @@
 import {
-  addClass,
   addControllerToElement,
+  animateWithClass,
   broadcastEvent,
   clearElement,
   ConfigurationFactory,
   EndableActionCreator,
   getControllerInstance,
   log,
+  removeClass,
   removeControllerFromElement,
   selectElement,
   setElementContent,
@@ -85,8 +86,10 @@ actionCreator
     systemName: "LabelController",
   })
   .addStartOperationByType(addControllerToElement, {})
-  .addStartOperationByType(addClass, { className: "fade-in" })
+  .addStartOperationByType(animateWithClass, { className: "fade-in" })
+  .addStartOperationByType(removeClass, { className: "fade-in" })
   .addEndOperationByType(selectElement, {})
+  .addEndOperationByType(animateWithClass, { className: "fade-out" })
   .addEndOperationByType(removeControllerFromElement, {})
   .addEndOperationByType(clearElement, {});
 
@@ -106,20 +109,22 @@ actionCreator
 // START LABELS:
 
 factory
-  .addLabel("mainTitle", "en-US", "Eligius de-mystified")
-  .addLabel("mainTitle", "nl-NL", "Eligius ontmystificeerd")
-  .addLabel("introText1", "en-US", "So, what exactly is Eligius?")
-  .addLabel("introText1", "nl-NL", "Dus, wat is Eligius precies?")
-  .addLabel(
-    "introText2",
-    "en-US",
-    "Well, in short, it's a story telling engine!"
-  )
-  .addLabel(
-    "introText2",
-    "nl-NL",
-    "Nouja, kort gezegd, het is een verhalenmachine!"
-  );
+  .addLabels("mainTitle", {
+    "en-US": "Eligius de-mystified",
+    "nl-NL": "Eligius ontmystificeerd",
+  })
+  .addLabels("introText1", {
+    "en-US": "So, what exactly is Eligius?",
+    "nl-NL": "Dus, wat is Eligius precies?",
+  })
+  .addLabels("introText2", {
+    "en-US": "Well, in short, it's a story telling engine!",
+    "nl-NL": "Nouja, kort gezegd, het is een verhalenmachine!",
+  })
+  .addLabels("introText3", {
+    "en-US": "A story telling engine?",
+    "nl-NL": "Een verhalenmachine?",
+  });
 
 // END LABELS
 
@@ -129,4 +134,3 @@ const customFactory = ConfigurationFactory.extendMultiple(
 );
 
 export { customFactory };
-

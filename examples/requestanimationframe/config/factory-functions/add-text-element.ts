@@ -28,7 +28,7 @@ export function addTextToElement(
       systemName: ACTION_TEMPLATE_NAMES.AppendTextToElement,
     })
     .addEndOperationByType(endAction, {
-      actionOperationData: { selector: actionOperationData.selector },
+      actionOperationData: { selector: actionOperationData.labelSelector },
     })
     .addDuration(duration.start, duration.end);
 }

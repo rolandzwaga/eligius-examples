@@ -1,4 +1,5 @@
 import {
+  addClass,
   addControllerToElement,
   clearElement,
   createElement,
@@ -168,7 +169,7 @@ let timelineActionCreator = customFactory.createTimelineAction(
   "AddIntroContainer"
 );
 timelineActionCreator
-  .addDuration(0, 10)
+  .addDuration(0, 15)
   .addStartOperationByType(selectElement, { selector: ".main-presentation" })
   .addStartOperationByType(setElementContent, {
     template: '<div class="intro-text"></div>',
@@ -179,7 +180,7 @@ timelineActionCreator
 customFactory.addTextToElement(
   "AddIntro",
   TIMELINE_TITLE,
-  { start: 0, end: 10 },
+  { start: 0, end: 9 },
   {
     selector: ".intro-text",
     template: "<div data-text-intro></div>",
@@ -189,16 +190,34 @@ customFactory.addTextToElement(
 );
 
 customFactory.addTextToElement(
-  "AddIntro",
+  "AddIntro2",
   TIMELINE_TITLE,
-  { start: 3, end: 10 },
+  { start: 3, end: 9 },
   {
     selector: ".intro-text",
-    template: "<div data-text-intro2></div>",
+    template: '<div data-text-intro2 class="intro2-text"></div>',
     labelSelector: "[data-text-intro2]",
     labelId: "introText2",
   }
 );
+
+customFactory.addTextToElement(
+  "AddIntro3",
+  TIMELINE_TITLE,
+  { start: 6, end: 13 },
+  {
+    selector: ".intro-text",
+    template: '<div data-text-intro3 class="intro3-text"></div>',
+    labelSelector: "[data-text-intro3]",
+    labelId: "introText3",
+  }
+);
+
+customFactory
+  .createTimelineAction(TIMELINE_TITLE, "CenterAndGrowIntro3")
+  .addDuration(8, 13)
+  .addStartOperationByType(selectElement, { selector: "[data-text-intro3]" })
+  .addStartOperationByType(addClass, { className: "center-and-grow" });
 
 // Get the final configuration and save it to file
 let configuration: IEngineConfiguration | undefined;
