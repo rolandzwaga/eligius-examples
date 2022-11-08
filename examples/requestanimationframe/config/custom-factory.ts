@@ -5,11 +5,12 @@ import {
   clearElement,
   ConfigurationFactory,
   EndableActionCreator,
+  getAttributesFromElement,
   getControllerInstance,
-  log,
   removeClass,
   removeControllerFromElement,
   selectElement,
+  setData,
   setElementContent,
   setOperationData,
   TimelineEventNames,
@@ -21,6 +22,7 @@ export const ACTION_TEMPLATE_NAMES = {
   AddPlayControl: "AddPlayControl",
   AppendTextToElement: "AppendTextToElement",
   BroadcastLanguageChange: "BroadcastLanguageChange",
+  SetUsernameFromInput: "SetUsernameFromInput",
 };
 
 export const TIMELINE_TITLE = "what-is-eligius";
@@ -96,13 +98,29 @@ actionCreator
 actionCreator = factory.createAction(
   ACTION_TEMPLATE_NAMES.BroadcastLanguageChange
 );
+actionCreator.addStartOperationByType(broadcastEvent, {
+  eventName: TimelineEventNames.LANGUAGE_CHANGE,
+  eventArgs: ["operationData.eventTarget.value"],
+});
+
+actionCreator = factory.createAction(
+  ACTION_TEMPLATE_NAMES.SetUsernameFromInput
+);
 actionCreator
-  .addStartOperationByType(log, {})
-  .addStartOperationByType(broadcastEvent, {
-    eventName: TimelineEventNames.LANGUAGE_CHANGE,
-    eventArgs: ["operationData.targetValue"],
+  .addStartOperationByType(selectElement, {
+    selector: "operationdata.inputSelector",
   })
-  .addStartOperationByType(log, {});
+  .addStartOperationByType(getAttributesFromElement, {
+    attributeNames: ["value"],
+  })
+  .addStartOperationByType(setData, {
+    properties: {
+      "globaldata.queryParams.username": "operationdata.attributeValues.value",
+    },
+  })
+  .addStartOperationByType(broadcastEvent, {
+    eventName: TimelineEventNames.PLAY_REQUEST,
+  });
 
 // End: Action templates
 
@@ -124,6 +142,24 @@ factory
   .addLabels("introText3", {
     "en-US": "A story telling engine?",
     "nl-NL": "Een verhalenmachine?",
+  })
+  .addLabels("introText4", {
+    "en-US": "Yup, it's an engine to tell stories with",
+    "nl-NL": "Yep, het is een machine om verhalen mee te vertellen",
+  })
+  .addLabels("introText5", {
+    "en-US":
+      "Let me show you how it works, but first, I'd like to know your name...",
+    "nl-NL":
+      "Ik zal je laten zien hoe het werkt, maar eerst wil ik graag weten hoe je heet...",
+  })
+  .addLabels("usernameSubmitButton", {
+    "en-US": "Submit",
+    "nl-NL": "Verstuur",
+  })
+  .addLabels("usernameInputPlaceholder", {
+    "en-US": "Your first name",
+    "nl-NL": "Je voornaam",
   });
 
 // END LABELS
@@ -134,3 +170,4 @@ const customFactory = ConfigurationFactory.extendMultiple(
 );
 
 export { customFactory };
+

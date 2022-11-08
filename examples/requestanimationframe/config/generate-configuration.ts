@@ -1,13 +1,14 @@
 import {
   addClass,
   addControllerToElement,
+  broadcastEvent,
   clearElement,
+  clearOperationData,
   createElement,
   endLoop,
   endWhen,
   getControllerInstance,
   getQueryParams,
-  IEngineConfiguration,
   otherwise,
   removeControllerFromElement,
   removeElement,
@@ -169,7 +170,7 @@ let timelineActionCreator = customFactory.createTimelineAction(
   "AddIntroContainer"
 );
 timelineActionCreator
-  .addDuration(0, 15)
+  .addDuration(0, 19)
   .addStartOperationByType(selectElement, { selector: ".main-presentation" })
   .addStartOperationByType(setElementContent, {
     template: '<div class="intro-text"></div>',
@@ -178,7 +179,7 @@ timelineActionCreator
   .addEndOperationByType(removeElement, {});
 
 customFactory.addTextToElement(
-  "AddIntro",
+  "AddIntro1",
   TIMELINE_TITLE,
   { start: 0, end: 9 },
   {
@@ -204,7 +205,7 @@ customFactory.addTextToElement(
 customFactory.addTextToElement(
   "AddIntro3",
   TIMELINE_TITLE,
-  { start: 6, end: 13 },
+  { start: 6, end: 12 },
   {
     selector: ".intro-text",
     template: '<div data-text-intro3 class="intro3-text"></div>',
@@ -215,16 +216,106 @@ customFactory.addTextToElement(
 
 customFactory
   .createTimelineAction(TIMELINE_TITLE, "CenterAndGrowIntro3")
-  .addDuration(8, 13)
+  .addDuration(8, 12)
   .addStartOperationByType(selectElement, { selector: "[data-text-intro3]" })
   .addStartOperationByType(addClass, { className: "center-and-grow" });
 
+customFactory.addTextToElement(
+  "AddIntro4",
+  TIMELINE_TITLE,
+  { start: 12, end: 18 },
+  {
+    selector: ".intro-text",
+    template: '<div data-text-intro4 class="intro4-text bigger-intro"></div>',
+    labelSelector: "[data-text-intro4]",
+    labelId: "introText4",
+  }
+);
+
+customFactory.addTextToElement(
+  "AddIntro5",
+  TIMELINE_TITLE,
+  { start: 15, end: 18 },
+  {
+    selector: ".intro-text",
+    template: '<div data-text-intro5 class="intro5-text bigger-intro"></div>',
+    labelSelector: "[data-text-intro5]",
+    labelId: "introText5",
+  }
+);
+
+customFactory
+  .createTimelineAction(TIMELINE_TITLE, "ShowNameInput")
+  .addDuration(18, 19)
+  .addStartOperationByType(broadcastEvent, {
+    eventName: TimelineEventNames.PAUSE_REQUEST,
+  })
+  .addStartOperationByType(selectElement, { selector: ".intro-text" })
+  .addStartOperationByType(setElementContent, {
+    insertionType: "overwrite",
+    template: '<div class="input-container"></div>',
+  })
+  .addStartOperationByType(selectElement, { selector: ".input-container" })
+  .addStartOperationByType(createElement, {
+    elementName: "input",
+    attributes: {
+      class: "user-name-input",
+      type: "text",
+      value: "globaldata.queryParams.username",
+    },
+  })
+  .addStartOperationByType(setElementContent, { insertionType: "append" })
+  .addStartOperationByType(selectElement, { selector: ".user-name-input" })
+  .addStartOperationByType(getControllerInstance, {
+    systemName: "LabelController",
+  })
+  .addStartOperationByType(addControllerToElement, {
+    labelId: "usernameInputPlaceholder",
+    attributeName: "placeholder",
+  })
+  .addStartOperationByType(selectElement, { selector: ".input-container" })
+  .addStartOperationByType(createElement, {
+    elementName: "button",
+    attributes: {
+      type: "button",
+      class: "tell-name-button",
+    },
+  })
+  .addStartOperationByType(setElementContent, { insertionType: "append" })
+  .addStartOperationByType(clearOperationData, {})
+  .addStartOperationByType(selectElement, { selector: ".tell-name-button" })
+  .addStartOperationByType(getControllerInstance, {
+    systemName: "LabelController",
+  })
+  .addStartOperationByType(addControllerToElement, {
+    labelId: "usernameSubmitButton",
+  } as any)
+  .addStartOperationByType(getControllerInstance, {
+    systemName: "EventListenerController",
+  })
+  .addStartOperationByType(addControllerToElement, {
+    eventName: "click",
+    actions: [ACTION_TEMPLATE_NAMES.SetUsernameFromInput],
+    actionOperationData: {
+      inputSelector: ".user-name-input",
+    },
+  } as any)
+  .addEndOperationByType(selectElement, { selector: ".user-name-input" })
+  .addEndOperationByType(removeControllerFromElement, {
+    controllerName: "LabelController",
+  })
+  .addEndOperationByType(selectElement, { selector: ".tell-name-button" })
+  .addEndOperationByType(removeControllerFromElement, {
+    controllerName: "LabelController",
+  })
+  .addEndOperationByType(removeControllerFromElement, {
+    controllerName: "EventListenerController",
+  })
+  .addEndOperationByType(selectElement, { selector: ".input-container" })
+  .addEndOperationByType(removeElement, {});
+
 // Get the final configuration and save it to file
-let configuration: IEngineConfiguration | undefined;
-customFactory.getConfiguration((config) => {
-  configuration = config;
-  return undefined;
-});
+const configuration = customFactory.getConfiguration();
 
 fs.writeFileSync(
   path.resolve(__dirname, "../src/config-data.json"),
