@@ -14,6 +14,7 @@ import {
   removeElement,
   removePropertiesFromOperationData,
   selectElement,
+  setElementAttributes,
   setElementContent,
   setGlobalData,
   setOperationData,
@@ -250,6 +251,10 @@ customFactory
   .addStartOperationByType(broadcastEvent, {
     eventName: TimelineEventNames.PAUSE_REQUEST,
   })
+  .addStartOperationByType(selectElement, { selector: "[data-id='play']" })
+  .addStartOperationByType(setElementAttributes, {
+    attributes: { disabled: true },
+  })
   .addStartOperationByType(selectElement, { selector: ".intro-text" })
   .addStartOperationByType(setElementContent, {
     insertionType: "overwrite",
@@ -298,6 +303,7 @@ customFactory
     actions: [ACTION_TEMPLATE_NAMES.SetUsernameFromInput],
     actionOperationData: {
       inputSelector: ".user-name-input",
+      buttonSelector: ".tell-name-button",
     },
   } as any)
   .addEndOperationByType(selectElement, { selector: ".user-name-input" })
@@ -312,7 +318,11 @@ customFactory
     controllerName: "EventListenerController",
   })
   .addEndOperationByType(selectElement, { selector: ".input-container" })
-  .addEndOperationByType(removeElement, {});
+  .addEndOperationByType(removeElement, {})
+  .addEndOperationByType(selectElement, { selector: "[data-id='play']" })
+  .addEndOperationByType(setElementAttributes, {
+    attributes: { disabled: false },
+  });
 
 // Get the final configuration and save it to file
 const configuration = customFactory.getConfiguration();

@@ -11,6 +11,7 @@ import {
   removeControllerFromElement,
   selectElement,
   setData,
+  setElementAttributes,
   setElementContent,
   setOperationData,
   TimelineEventNames,
@@ -117,6 +118,12 @@ actionCreator
     properties: {
       "globaldata.queryParams.username": "operationdata.attributeValues.value",
     },
+  })
+  .addStartOperationByType(selectElement, {
+    selector: "operationdata.buttonSelector",
+  })
+  .addStartOperationByType(setElementAttributes, {
+    attributes: { disabled: true },
   })
   .addStartOperationByType(broadcastEvent, {
     eventName: TimelineEventNames.PLAY_REQUEST,
