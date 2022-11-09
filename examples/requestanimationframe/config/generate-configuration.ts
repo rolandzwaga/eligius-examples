@@ -360,9 +360,12 @@ initActionCreator
       },
     })
     .addEndOperationByType(selectElement, {
-      selector: ".greeter",
+      selector: "[data-id-personal-greet]",
     })
     .addEndOperationByType(clearElement, {})
+    .addEndOperationByType(selectElement, {
+      selector: ".greeter",
+    })
     .addEndOperationByType(setStyle, {
       properties: {
         display: "none",

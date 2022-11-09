@@ -91,6 +91,7 @@ body {
 .subtitles-div {
   width: 100%;
   height: 1.2em;
+  text-align: center;
 }
 
 .progress-bar-container {
