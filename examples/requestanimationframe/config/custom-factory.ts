@@ -138,6 +138,10 @@ factory
     "en-US": "Eligius de-mystified",
     "nl-NL": "Eligius ontmystificeerd",
   })
+  .addLabels("mainTitleFor", {
+    "en-US": "for",
+    "nl-NL": "voor",
+  })
   .addLabels("introText1", {
     "en-US": "So, what exactly is Eligius?",
     "nl-NL": "Dus, wat is Eligius precies?",
