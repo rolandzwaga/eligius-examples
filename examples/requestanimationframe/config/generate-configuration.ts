@@ -19,6 +19,7 @@ import {
   setGlobalData,
   setOperationData,
   startLoop,
+  SubtitleEditor,
   TimelineEventNames,
   when,
 } from "eligius";
@@ -155,7 +156,7 @@ initActionCreator
   })
   .addStartOperationByType(addControllerToElement, {
     language: "config:language",
-    subtitleData: "json:testSubtitles",
+    subtitleData: "json:subtitles",
   } as any)
   .addEndOperationByType(selectElement, { selector: "#subtitles" })
   .addEndOperationByType(removeControllerFromElement, {
@@ -330,6 +331,34 @@ const configuration = customFactory.getConfiguration();
 fs.writeFileSync(
   path.resolve(__dirname, "../src/config-data.json"),
   JSON.stringify(configuration, null, 2),
+  {
+    encoding: "utf-8",
+  }
+);
+
+// Generate the subtitle
+
+const subtitleEditor = new SubtitleEditor();
+const subtitles = subtitleEditor
+  .addLanguage("en-US")
+  .addLanguage("nl-NL")
+  .addSubtitles(
+    {
+      start: 20,
+      end: 23,
+    },
+    {
+      "en-US":
+        "There, much better. Now, here are the main concepts in Eligius.",
+      "nl-NL":
+        "There, much better. Now, here are the main concepts in Eligius.",
+    }
+  )
+  .export();
+
+fs.writeFileSync(
+  path.resolve(__dirname, "../src/json/subtitles.json"),
+  JSON.stringify(subtitles, null, 2),
   {
     encoding: "utf-8",
   }
