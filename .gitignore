@@ -1,5 +1,7 @@
 node_modules
-/examples/requestanimationframe/src/boot.ts
-/examples/requestanimationframe/src/webpack-resource-importer.ts
-/examples/requestanimationframe/src/config-data.json
-/examples/requestanimationframe/src/json/subtitles.json
+/examples/**/src/boot.ts
+/examples/**/src/create-engine.ts
+/examples/**/src/webpack-resource-importer.ts
+/examples/**/src/config-data.json
+/examples/**/src/json/subtitles.json
+/examples/videojs/config-data.json

@@ -1,15 +1,18 @@
 import {
   addClass,
   addControllerToElement,
+  animateWithClass,
   broadcastEvent,
   clearElement,
   clearOperationData,
   createElement,
   endLoop,
   endWhen,
+  getControllerFromElement,
   getControllerInstance,
   getQueryParams,
   otherwise,
+  removeClass,
   removeControllerFromElement,
   removeElement,
   removePropertiesFromOperationData,
@@ -187,7 +190,7 @@ initActionCreator
     "AddIntroContainer"
   );
   timelineActionCreator
-    .addDuration(0, 19)
+    .addDuration(0, 23)
     .addStartOperationByType(selectElement, { selector: ".main-presentation" })
     .addStartOperationByType(setElementContent, {
       template: '<div class="intro-text"></div>',
@@ -359,6 +362,7 @@ initActionCreator
         display: "block",
       },
     })
+    .addStartOperationByType(addClass, { className: "fade-in" })
     .addEndOperationByType(selectElement, {
       selector: "[data-id-personal-greet]",
     })
@@ -372,37 +376,78 @@ initActionCreator
       },
     });
 
+  customFactory
+    .createTimelineAction(TIMELINE_TITLE, "AddSubtitleAnnouncement")
+    .addDuration(20, 24)
+    .addStartOperationByType(selectElement, { selector: ".intro-text" })
+    .addStartOperationByType(setElementContent, {
+      template: "<div class='subtitle-announcement'></div>",
+    })
+    .addStartOperationByType(selectElement, {
+      selector: ".subtitle-announcement",
+    })
+    .addStartOperationByType(getControllerInstance, {
+      systemName: "LabelController",
+    })
+    .addStartOperationByType(addControllerToElement, {
+      labelId: "subtitleAnnouncement",
+    })
+    .addStartOperationByType(animateWithClass, {
+      className: "sink",
+    })
+    .addStartOperationByType(removeClass, {
+      className: "sink",
+    })
+    .addEndOperationByType(selectElement, {
+      selector: ".subtitle-announcement",
+    })
+    .addEndOperationByType(getControllerFromElement, {
+      controllerName: "LabelController",
+    })
+    .addEndOperationByType(removeControllerFromElement, {})
+    .addEndOperationByType(removeElement, {});
 
-// Get the final configuration and save it to file
-const configuration = customFactory.getConfiguration();
+  // Get the final configuration and save it to file
+  const configuration = customFactory.getConfiguration();
 
-fs.writeFileSync(
-  path.resolve(__dirname, "../src/config-data.json"),
-  JSON.stringify(configuration, null, 2),
-  {
-    encoding: "utf-8",
-  }
-);
-
-// Generate the subtitle
-
-const subtitleEditor = new SubtitleEditor();
-const subtitles = subtitleEditor
-  .addLanguage("en-US")
-  .addLanguage("nl-NL")
-  .addSubtitles(
+  fs.writeFileSync(
+    path.resolve(__dirname, "../src/config-data.json"),
+    JSON.stringify(configuration, null, 2),
     {
-      start: 20,
-      end: 23,
-    },
-    {
-      "en-US":
-        "There, much better. Now, here are the main concepts in Eligius.",
-      "nl-NL":
-        "There, much better. Now, here are the main concepts in Eligius.",
+      encoding: "utf-8",
     }
-  )
-  .export();
+  );
+
+  // Generate the subtitles
+  const subtitleEditor = new SubtitleEditor();
+  const subtitles = subtitleEditor
+    .addLanguage("en-US")
+    .addLanguage("nl-NL")
+    .addSubtitles(
+      {
+        start: 24,
+        end: 27,
+      },
+      {
+        "en-US":
+          "There, much better. Now, here are the main concepts in Eligius.",
+        "nl-NL":
+          "There, much better. Now, here are the main concepts in Eligius.",
+      }
+    )
+    .addSubtitles(
+      {
+        start: 24,
+        end: 27,
+      },
+      {
+        "en-US":
+          "There, much better. Now, here are the main concepts in Eligius.",
+        "nl-NL":
+          "There, much better. Now, here are the main concepts in Eligius.",
+      }
+    )
+    .export();
 
 fs.writeFileSync(
   path.resolve(__dirname, "../src/json/subtitles.json"),

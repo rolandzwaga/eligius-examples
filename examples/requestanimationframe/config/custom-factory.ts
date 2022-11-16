@@ -171,6 +171,12 @@ factory
   .addLabels("usernameInputPlaceholder", {
     "en-US": "Your first name",
     "nl-NL": "Je voornaam",
+  })
+  .addLabels("subtitleAnnouncement", {
+    "en-US":
+      "Excellent, with that out of the way, let me move all of this text to the subtitle area below the presentation area, in order to make room.",
+    "nl-NL":
+      "Prachtig, klaar is kees, laat me nu deze tekst dan een stuk naar beneden brengen naar de ondertitels, om wat ruimte te creeeren.",
   });
 
 // END LABELS

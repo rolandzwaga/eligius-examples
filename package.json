@@ -15,7 +15,7 @@
   },
   "scripts": {
     "config-example-1": "ts-node ./examples/requestanimationframe/config/generate-configuration",
-    "bundle-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild.js",
+    "bundle-example-1": "ts-node ./src/engine-pack-builder ./examples/requestanimationframe/src/config-data.json && node esbuild-1.js",
     "build-example-1": "yarn config-example-1 && yarn bundle-example-1",
     "clean": "npx rimraf docs/requestanimationframe"
   },
