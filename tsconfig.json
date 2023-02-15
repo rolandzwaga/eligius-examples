@@ -1,8 +1,8 @@
 {
   "include": ["./src/**/*.ts"],
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "es5",
+    "module": "Node16",
+    "target": "ESNext",
     "noEmit": false,
     "types": ["node"],
     "lib": ["dom", "esnext"],

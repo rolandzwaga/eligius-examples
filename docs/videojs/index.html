@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <title>Eligius Sequence</title>
+    <style>
+      .main {
+        display: flex;
+        flex-direction: row;
+        height: vh;
+      }
+      .box {
+        border: 1px black solid;
+        flex: 1;
+        height: vh;
+      }
+    </style>
+   <link rel="stylesheet" href="app.bundle.css"><link rel="stylesheet" href="css.bundle.css"><link rel="stylesheet" href="monaco.css.bundle.css"><link rel="stylesheet" href="monaco.css.bundle.css"></head>
+  <body>
+    <div class="main">
+      <div id="ct-container" class="box"></div>
+      <div id="config" class="box" style="display:none">
+        <button type="button" onclick="reload(event)">Reload configuration</button>
+        <div id="container" style="width: 100%; height: 90%"></div>
+      </div>
+    </div>
+  
+
+<script src="app.bundle.js" defer=""></script></body></html>

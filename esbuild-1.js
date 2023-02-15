@@ -38,6 +38,7 @@ esbuild
     platform: "browser",
     outdir: "docs/requestanimationframe",
     external: ["fs", "path"],
+    target: ["esnext"],
     loader: {
       ".html": "text",
       ".ttf": "file",
